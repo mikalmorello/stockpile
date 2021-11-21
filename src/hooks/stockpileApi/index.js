@@ -1,5 +1,5 @@
 const stockpileAPI = {
-  getStockpiles: function () {
+  getStockpiles: function (setStockpiles) {
     // Get all the stockpiles
     console.log("test stockpiles api");
     let apiUrl = "http://127.0.0.1:8000/api/stockpiles";
@@ -10,9 +10,10 @@ const stockpileAPI = {
       })
       .then(function (data) {
         console.log(data);
+        setStockpiles(data);
       });
   },
-  getStockpile: function (stockpileId) {
+  getStockpile: function (stockpileId, setStockpile) {
     let apiUrl = `http://127.0.0.1:8000/api/stockpiles/${stockpileId}`;
 
     fetch(apiUrl)
@@ -21,6 +22,7 @@ const stockpileAPI = {
       })
       .then(function (data) {
         console.log(data);
+        setStockpile(data);
       });
   },
 };
