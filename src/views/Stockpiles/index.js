@@ -11,7 +11,7 @@ function Stockpiles() {
     StockpileApi.getStockpiles(setStockpiles);
   }, []);
 
-  // If the stockpiles variable has loaded
+  // If the stockpiles data is available
   if (stockpiles) {
     return (
       <main>
