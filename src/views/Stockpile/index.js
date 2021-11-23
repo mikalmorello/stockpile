@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import stockpileApi from "../../hooks/stockpileApi";
 
 function Stockpile() {
+  // Get URL params
   let params = useParams(),
     stockpileId = params.stockpileId;
 

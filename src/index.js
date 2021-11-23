@@ -5,6 +5,8 @@ import Stockpiles from "./views/Stockpiles";
 import Stockpile from "./views/Stockpile";
 import Users from "./views/Users";
 import User from "./views/User";
+import Stocks from "./views/Stocks";
+import Stock from "./views/Stock";
 
 const rootElement = document.getElementById("root");
 render(
@@ -24,6 +26,9 @@ render(
       />
       <Route path="/users" element={<Users />}>
         <Route path=":userId" element={<User />} />
+      </Route>
+      <Route path="/stocks" element={<Stocks />}>
+        <Route path=":stockSymbol" element={<Stock />} />
       </Route>
     </Routes>
   </BrowserRouter>,
