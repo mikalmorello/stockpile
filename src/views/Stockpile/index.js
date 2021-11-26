@@ -21,8 +21,11 @@ function Stockpile() {
     return (
       <main id={stockpile.id}>
         <h1>{stockpile.title}</h1>
+        <p>{stockpile.creator}</p>
         <ul>
-          <li>{stockpile.creator}</li>
+          {stockpile.stocks.map((stock) => (
+            <li key={stock}>{stock}</li>
+          ))}
         </ul>
       </main>
     );
