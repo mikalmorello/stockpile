@@ -24,7 +24,9 @@ function Stockpile() {
         <p>{stockpile.creator}</p>
         <ul>
           {stockpile.stocks.map((stock) => (
-            <li key={stock}>{stock}</li>
+            <li key={stock.id}>
+              {stock.symbol} - {stock.daily[0].price} - {stock.last_refreshed}
+            </li>
           ))}
         </ul>
       </main>
