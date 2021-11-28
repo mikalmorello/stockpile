@@ -7,17 +7,21 @@ const options = [
   { value: "AAON", label: "AAON" },
   { value: "AAOI", label: "AAOI" },
   { value: "AGFY", label: "AGFY" },
+  { value: "AAPL", label: "AAPL" },
 ];
 
 function StockpileAdd() {
   // State
   const [title, setTitle] = React.useState(""),
-    [selectedOption, setSelectedOption] = React.useState();
+    [selectedOptions, setSelectedOptions] = React.useState([]);
 
   // Handle select
-  const onchangeSelect = (item) => {
-    setSelectedOption(item);
+  const onchangeSelect = (options) => {
+    setSelectedOptions(options);
   };
+
+  console.log("selected Options");
+  console.log(selectedOptions);
 
   // Handle form submission
   const handleSubmit = (e) => {
@@ -31,7 +35,7 @@ function StockpileAdd() {
       method: "POST",
       body: JSON.stringify({
         title: title,
-        stocks: selectedOption.value,
+        stocks: selectedOptions,
       }),
     });
   };
@@ -43,9 +47,10 @@ function StockpileAdd() {
         <label htmlFor="title">Title:</label>
         <input id="title" name="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
         <Select
-          value={selectedOption}
+          value={selectedOptions}
           onChange={onchangeSelect}
           options={options}
+          isMulti
           //
         />
         <button type="submit">Submit</button>
