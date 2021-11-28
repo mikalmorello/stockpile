@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./views/App";
 import Stockpiles from "./views/Stockpiles";
 import Stockpile from "./views/Stockpile";
+import StockpileAdd from "./views/StockpileAdd";
 import Users from "./views/Users";
 import User from "./views/User";
 import Stocks from "./views/Stocks";
@@ -16,6 +17,7 @@ render(
       <Route path="/stockpiles" element={<Stockpiles />}>
         <Route path=":stockpileId" element={<Stockpile />} />
       </Route>
+      <Route path="/stockpiles/add" element={<StockpileAdd />} />
       <Route
         path="*"
         element={

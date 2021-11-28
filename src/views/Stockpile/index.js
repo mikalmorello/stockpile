@@ -22,13 +22,17 @@ function Stockpile() {
       <main id={stockpile.id}>
         <h1>{stockpile.title}</h1>
         <p>{stockpile.creator}</p>
-        <ul>
-          {stockpile.stocks.map((stock) => (
-            <li key={stock.id}>
-              {stock.symbol} - {stock.daily[0].price} - {stock.last_refreshed}
-            </li>
-          ))}
-        </ul>
+        {stockpile.stocks.map((stock) => (
+          <ul key={stock.id}>
+            <li>{stock.symbol}</li>
+            <li>${stock.daily[0].price}</li>
+            <li>{stock.day_change.percent}%</li>
+            <li>${stock.day_change.price}</li>
+            <li>{stock.week_change.percent}%</li>
+            <li>${stock.week_change.price}</li>
+            <li>{stock.last_refreshed}</li>
+          </ul>
+        ))}
       </main>
     );
   }
