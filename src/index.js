@@ -8,6 +8,7 @@ import Users from "./views/Users";
 import User from "./views/User";
 import Stocks from "./views/Stocks";
 import Stock from "./views/Stock";
+import Symbols from "./views/Symbols";
 
 const rootElement = document.getElementById("root");
 render(
@@ -32,6 +33,7 @@ render(
       <Route path="/stocks" element={<Stocks />}>
         <Route path=":stockSymbol" element={<Stock />} />
       </Route>
+      <Route path="/symbols" element={<Symbols />} />
     </Routes>
   </BrowserRouter>,
   rootElement
