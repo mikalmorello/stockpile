@@ -1,8 +1,11 @@
+// Environment variables
+const { REACT_APP_STOCKPILE_API_URL } = process.env;
+
 const stockpileAPI = {
   getStockpiles: function (setStockpiles) {
     // Get all the stockpiles
     console.log("test stockpiles api");
-    let apiUrl = `http://127.0.0.1:8000/api/stockpiles`;
+    let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/stockpiles`;
 
     fetch(apiUrl)
       .then(function (response) {
@@ -14,7 +17,7 @@ const stockpileAPI = {
       });
   },
   getStockpile: function (stockpileId, setStockpile) {
-    let apiUrl = `http://127.0.0.1:8000/api/stockpiles/${stockpileId}`;
+    let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/stockpiles/${stockpileId}`;
 
     fetch(apiUrl)
       .then(function (response) {

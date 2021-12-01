@@ -2,6 +2,9 @@
 import React from "react";
 import Select from "react-select";
 
+// Environment variables
+const { REACT_APP_STOCKPILE_API_URL } = process.env;
+
 // Select options
 const options = [
   { value: "AAON", label: "AAON" },
@@ -31,7 +34,7 @@ function StockpileAdd() {
     e.preventDefault();
 
     // Connect to API
-    return fetch("http://127.0.0.1:8000/api/stockpiles/create", {
+    return fetch(`${REACT_APP_STOCKPILE_API_URL}/api/stockpiles/create`, {
       method: "POST",
       body: JSON.stringify({
         title: title,

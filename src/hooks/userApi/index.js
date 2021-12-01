@@ -1,7 +1,10 @@
+// Environment variables
+const { REACT_APP_STOCKPILE_API_URL } = process.env;
+
 const userApi = {
   getUsers: function (setUsers) {
     // Get all users
-    let apiUrl = `http://127.0.0.1:8000/api/users`;
+    let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/users`;
 
     fetch(apiUrl)
       .then(function (promise) {
@@ -14,7 +17,7 @@ const userApi = {
   },
   getUser: function (userId, setUser) {
     // Get user
-    let apiUrl = `http://127.0.0.1:8000/api/users/${userId}`;
+    let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/users/${userId}`;
 
     fetch(apiUrl)
       .then(function (promise) {
