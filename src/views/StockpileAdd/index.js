@@ -1,27 +1,49 @@
 // Dependencies
 import React from "react";
 import Select from "react-select";
+import symbolApi from "../../hooks/symbolApi";
 
 // Environment variables
 const { REACT_APP_STOCKPILE_API_URL } = process.env;
 
-// Select options
-const options = [
-  { value: "AAON", label: "AAON" },
-  { value: "AAOI", label: "AAOI" },
-  { value: "AGFY", label: "AGFY" },
-  { value: "AAPL", label: "AAPL" },
-];
+// // Select options
+// const options = [
+//   { value: "AAON", label: "AAON" },
+//   { value: "AAOI", label: "AAOI" },
+//   { value: "AGFY", label: "AGFY" },
+//   { value: "AAPL", label: "AAPL" },
+// ];
 
 function StockpileAdd() {
   // State
   const [title, setTitle] = React.useState(""),
-    [selectedOptions, setSelectedOptions] = React.useState([]);
+    [selectedOptions, setSelectedOptions] = React.useState([]),
+    [symbols, setSymbols] = React.useState([]),
+    [options, setOptions] = React.useState([]);
 
   // Handle select
   const onchangeSelect = (options) => {
     setSelectedOptions(options);
   };
+
+  // Get stock symbols
+  React.useEffect(() => {
+    symbolApi.getSymbols(setSymbols);
+    console.log("is this running");
+  }, []);
+
+  // Create options
+  React.useEffect(() => {
+    if (symbols) {
+      let symbolOptions = symbols.map((option) => {
+        return {
+          value: option.symbol,
+          label: option.symbol,
+        };
+      });
+      setOptions(symbolOptions);
+    }
+  }, [symbols]);
 
   console.log("selected Options");
   console.log(selectedOptions);
