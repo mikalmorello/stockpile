@@ -16,7 +16,7 @@ function App() {
   const [context, setContext] = React.useState("test");
 
   return (
-    <UserContext.Provider value={(context, setContext)}>
+    <UserContext.Provider value={{ context, setContext }}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
