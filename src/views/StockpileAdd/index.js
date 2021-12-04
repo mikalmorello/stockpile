@@ -12,7 +12,9 @@ function StockpileAdd() {
   const [title, setTitle] = React.useState(""),
     [selectedOptions, setSelectedOptions] = React.useState([]),
     [symbols, setSymbols] = React.useState([]),
-    [options, setOptions] = React.useState([]);
+    [options, setOptions] = React.useState([]),
+    customFilter = createFilter({ ignoreAccents: false }),
+    selectLimit = 5;
 
   // Handle select
   const onchangeSelect = (options) => {
@@ -58,9 +60,6 @@ function StockpileAdd() {
     });
   };
 
-  // Limit options?
-  let maxLimit = 100;
-  const customFilter = createFilter({ ignoreAccents: false });
   return (
     <main>
       <h1>Add stockpile</h1>
@@ -68,7 +67,7 @@ function StockpileAdd() {
         <label htmlFor="title">Title:</label>
         <input id="title" name="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
         <WindowedSelect
-          isOptionDisabled={(option) => selectedOptions.length >= maxLimit}
+          isOptionDisabled={(option) => selectedOptions.length >= selectLimit}
           value={selectedOptions}
           onChange={onchangeSelect}
           options={options}
