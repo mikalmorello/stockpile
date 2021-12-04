@@ -1,18 +1,11 @@
 // Dependencies
 import React from "react";
-import Select from "react-select";
+import WindowedSelect from "react-windowed-select";
 import symbolApi from "../../hooks/symbolApi";
+import { createFilter } from "react-windowed-select";
 
 // Environment variables
 const { REACT_APP_STOCKPILE_API_URL } = process.env;
-
-// // Select options
-// const options = [
-//   { value: "AAON", label: "AAON" },
-//   { value: "AAOI", label: "AAOI" },
-//   { value: "AGFY", label: "AGFY" },
-//   { value: "AAPL", label: "AAPL" },
-// ];
 
 function StockpileAdd() {
   // State
@@ -32,7 +25,7 @@ function StockpileAdd() {
     console.log("is this running");
   }, []);
 
-  // Create options
+  // Create options from stock symbols
   React.useEffect(() => {
     if (symbols) {
       let symbolOptions = symbols.map((option) => {
@@ -65,16 +58,21 @@ function StockpileAdd() {
     });
   };
 
+  // Limit options?
+  let maxLimit = 100;
+  const customFilter = createFilter({ ignoreAccents: false });
   return (
     <main>
       <h1>Add stockpile</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
         <input id="title" name="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
-        <Select
+        <WindowedSelect
+          isOptionDisabled={(option) => selectedOptions.length >= maxLimit}
           value={selectedOptions}
           onChange={onchangeSelect}
           options={options}
+          filterOption={customFilter}
           isMulti
           //
         />
