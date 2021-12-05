@@ -12,6 +12,7 @@ import User from "../../views/User";
 import Stocks from "../../views/Stocks";
 import Stock from "../../views/Stock";
 import Symbols from "../../views/Symbols";
+import Login from "../../views/Login";
 import UserContext from "../../context/UserContext";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/stockpiles" element={<Stockpiles />}>
             <Route path=":stockpileId" element={<Stockpile />} />
