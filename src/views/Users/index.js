@@ -23,7 +23,6 @@ function Users() {
             </li>
           ))}
         </ul>
-        <Outlet />
       </main>
     );
   }
