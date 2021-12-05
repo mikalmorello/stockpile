@@ -6,6 +6,7 @@ import Profile from "../../views/Profile";
 import Stockpiles from "../../views/Stockpiles";
 import Stockpile from "../../views/Stockpile";
 import StockpileAdd from "../../views/StockpileAdd";
+import StockpileEdit from "../../views/StockpileEdit";
 import Users from "../../views/Users";
 import User from "../../views/User";
 import Stocks from "../../views/Stocks";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/stockpiles" element={<Stockpiles />}>
             <Route path=":stockpileId" element={<Stockpile />} />
+            <Route path=":stockpile/edit" element={<StockpileEdit />} />
           </Route>
           <Route path="/stockpiles/add" element={<StockpileAdd />} />
           <Route path="/users" element={<Users />}>

@@ -2,6 +2,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import stockpileApi from "../../hooks/stockpileApi";
+import { Outlet, Link } from "react-router-dom";
 
 function Stockpile() {
   // Get URL params
@@ -21,6 +22,7 @@ function Stockpile() {
     return (
       <main id={stockpile.id}>
         <h1>{stockpile.title}</h1>
+        <Link to={`/stockpiles/${stockpileId}/edit`}>Edit</Link>
         <p>{stockpile.creator.username}</p>
         {stockpile.stocks.map((stock) => (
           <ul key={stock.id}>
@@ -33,6 +35,7 @@ function Stockpile() {
             <li>{stock.last_refreshed}</li>
           </ul>
         ))}
+        <Outlet />
       </main>
     );
   }
