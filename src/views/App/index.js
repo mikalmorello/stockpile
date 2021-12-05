@@ -1,7 +1,8 @@
 // Dependencies
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../../views/Home";
+import Profile from "../../views/Profile";
 import Stockpiles from "../../views/Stockpiles";
 import Stockpile from "../../views/Stockpile";
 import StockpileAdd from "../../views/StockpileAdd";
@@ -20,6 +21,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/stockpiles" element={<Stockpiles />}>
             <Route path=":stockpileId" element={<Stockpile />} />
           </Route>
