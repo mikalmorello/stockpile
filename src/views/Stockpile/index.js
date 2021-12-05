@@ -21,7 +21,7 @@ function Stockpile() {
     return (
       <main id={stockpile.id}>
         <h1>{stockpile.title}</h1>
-        <p>{stockpile.creator}</p>
+        <p>{stockpile.creator.username}</p>
         {stockpile.stocks.map((stock) => (
           <ul key={stock.id}>
             <li>{stock.symbol}</li>
