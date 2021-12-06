@@ -1,10 +1,12 @@
 import React from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import StockpileApi from "../../hooks/stockpileApi";
+import AuthContext from "../../context/AuthContext";
 
 function Stockpiles() {
   // State
-  const [stockpiles, setStockpiles] = React.useState();
+  const [stockpiles, setStockpiles] = React.useState(),
+    { authTokens } = React.useContext(AuthContext);
 
   // Get location to refresh page (hack)
   const location = useLocation();

@@ -13,16 +13,19 @@ import Stocks from "../../views/Stocks";
 import Stock from "../../views/Stock";
 import Symbols from "../../views/Symbols";
 import Login from "../../views/Login";
-import UserContext from "../../context/UserContext";
+import Header from "../../components/Header";
+import PrivateRoute from "../../utils/PrivateRoute";
+import { AuthProvider } from "../../context/AuthContext";
 
 function App() {
-  const [context, setContext] = React.useState("test");
-
   return (
-    <UserContext.Provider value={{ context, setContext }}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
+        <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/" element={<Home />} />
+          </Route>
           <Route path="/login" element={<Login />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/stockpiles" element={<Stockpiles />}>
@@ -46,8 +49,8 @@ function App() {
             }
           />
         </Routes>
-      </BrowserRouter>
-    </UserContext.Provider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 

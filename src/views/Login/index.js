@@ -1,33 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import userApi from "../../hooks/userApi";
+import AuthContext from "../../context/AuthContext";
 
-function Login() {
-  // State
-  const [username, setUsername] = React.useState(""),
-    [password, setPassword] = React.useState("");
-
-  // Handle submission
-  const handleLogin = function (e) {
-    e.preventDefault();
-    console.log("login");
-    userApi.getToken({
-      username,
-      password,
-    });
-  };
-
+const Login = () => {
+  let { loginUser } = useContext(AuthContext);
   return (
     <main>
       <h1>Login</h1>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={loginUser}>
         <label htmlFor="username">Username</label>
-        <input type="text" id="username" name="username" value={username} onChange={(e) => setUsername(e.target.value)} required />
+        <input type="text" id="username" name="username" required />
         <label htmlFor="password">Password</label>
-        <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+        <input type="password" id="password" name="password" required />
         <button type="submit">Login</button>
       </form>
     </main>
   );
-}
+};
 
 export default Login;

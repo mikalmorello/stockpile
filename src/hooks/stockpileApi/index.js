@@ -7,7 +7,15 @@ const stockpileAPI = {
     console.log("test stockpiles api");
     let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/stockpiles`;
 
-    fetch(apiUrl)
+    fetch(
+      apiUrl
+      // , {
+      // method: "GET",
+      // headers: {
+      //   Authorization: "Bearer " + String(authTokens.access),
+      // },
+      // }
+    )
       .then(function (response) {
         return response.json();
       })
