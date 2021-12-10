@@ -2,12 +2,17 @@
 const { REACT_APP_STOCKPILE_API_URL } = process.env;
 
 const stockpileAPI = {
-  getStockpiles: function (setStockpiles) {
+  getStockpiles: function (setStockpiles, authTokens) {
     // Get all the stockpiles
     console.log("test stockpiles api");
     let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/stockpiles`;
 
-    fetch(apiUrl)
+    fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + String(authTokens.access),
+      },
+    })
       .then(function (response) {
         return response.json();
       })

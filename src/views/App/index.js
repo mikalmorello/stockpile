@@ -12,27 +12,32 @@ import User from "../../views/User";
 import Stocks from "../../views/Stocks";
 import Stock from "../../views/Stock";
 import Symbols from "../../views/Symbols";
-import UserContext from "../../context/UserContext";
+import Login from "../../views/Login";
+import Header from "../../components/Header";
+import PrivateRoute from "../../utils/PrivateRoute";
+import { AuthProvider } from "../../context/AuthContext";
 
 function App() {
-  const [context, setContext] = React.useState("test");
-
   return (
-    <UserContext.Provider value={{ context, setContext }}>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthProvider>
+        <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/stockpiles" element={<Stockpiles />}>
-            <Route path=":stockpileId" element={<Stockpile />} />
-            <Route path=":stockpile/edit" element={<StockpileEdit />} />
-          </Route>
-          <Route path="/stockpiles/add" element={<StockpileAdd />} />
-          <Route path="/users" element={<Users />}>
-            <Route path=":userId" element={<User />} />
-          </Route>
-          <Route path="/stocks" element={<Stocks />}>
-            <Route path=":stockSymbol" element={<Stock />} />
+          <Route path="/login" element={<Login />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/stockpiles" element={<Stockpiles />}>
+              <Route path=":stockpileId" element={<Stockpile />} />
+              <Route path=":stockpile/edit" element={<StockpileEdit />} />
+            </Route>
+            <Route path="/stockpiles/add" element={<StockpileAdd />} />
+            <Route path="/users" element={<Users />}>
+              <Route path=":userId" element={<User />} />
+            </Route>
+            <Route path="/stocks" element={<Stocks />}>
+              <Route path=":stockSymbol" element={<Stock />} />
+            </Route>
           </Route>
           <Route path="/symbols" element={<Symbols />} />
           <Route
@@ -44,8 +49,8 @@ function App() {
             }
           />
         </Routes>
-      </BrowserRouter>
-    </UserContext.Provider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 

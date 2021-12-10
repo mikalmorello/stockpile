@@ -1,18 +1,23 @@
 import React from "react";
 import { Outlet, Link, useLocation } from "react-router-dom";
 import StockpileApi from "../../hooks/stockpileApi";
+import AuthContext from "../../context/AuthContext";
 
 function Stockpiles() {
   // State
-  const [stockpiles, setStockpiles] = React.useState();
+  const [stockpiles, setStockpiles] = React.useState(),
+    { authTokens } = React.useContext(AuthContext);
+
+  console.log("get auth");
+  console.log(authTokens);
 
   // Get location to refresh page (hack)
   const location = useLocation();
 
   // Get all stockpiles
   React.useEffect(() => {
-    StockpileApi.getStockpiles(setStockpiles);
-  }, [location.key]);
+    StockpileApi.getStockpiles(setStockpiles, authTokens);
+  }, [location.key, authTokens]);
 
   // If the stockpiles data is available
   if (stockpiles) {
