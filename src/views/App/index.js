@@ -13,9 +13,11 @@ import Stocks from "../../views/Stocks";
 import Stock from "../../views/Stock";
 import Symbols from "../../views/Symbols";
 import Login from "../../views/Login";
+import Register from "../../views/Register";
 import Header from "../../components/Header";
 import PrivateRoute from "../../utils/PrivateRoute";
 import { AuthProvider } from "../../context/AuthContext";
+import "./App.scss";
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
       <AuthProvider>
         <Header />
         <Routes>
+          <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<Home />} />
