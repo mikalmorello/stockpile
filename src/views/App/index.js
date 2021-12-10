@@ -23,21 +23,21 @@ function App() {
       <AuthProvider>
         <Header />
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<Home />} />
-          </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/stockpiles" element={<Stockpiles />}>
-            <Route path=":stockpileId" element={<Stockpile />} />
-            <Route path=":stockpile/edit" element={<StockpileEdit />} />
-          </Route>
-          <Route path="/stockpiles/add" element={<StockpileAdd />} />
-          <Route path="/users" element={<Users />}>
-            <Route path=":userId" element={<User />} />
-          </Route>
-          <Route path="/stocks" element={<Stocks />}>
-            <Route path=":stockSymbol" element={<Stock />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/stockpiles" element={<Stockpiles />}>
+              <Route path=":stockpileId" element={<Stockpile />} />
+              <Route path=":stockpile/edit" element={<StockpileEdit />} />
+            </Route>
+            <Route path="/stockpiles/add" element={<StockpileAdd />} />
+            <Route path="/users" element={<Users />}>
+              <Route path=":userId" element={<User />} />
+            </Route>
+            <Route path="/stocks" element={<Stocks />}>
+              <Route path=":stockSymbol" element={<Stock />} />
+            </Route>
           </Route>
           <Route path="/symbols" element={<Symbols />} />
           <Route

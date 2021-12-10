@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ refresh: authTokens.refresh }),
+      body: JSON.stringify({ refresh: authTokens?.refresh }),
     });
     let data = await response.json();
 
@@ -59,6 +59,10 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("authTokens", JSON.stringify(data));
     } else {
       logoutUser();
+    }
+
+    if (loading) {
+      setLoading(false);
     }
   };
 
@@ -75,13 +79,17 @@ export const AuthProvider = ({ children }) => {
 
   let contextData = {
     user: user,
+    authTokens: authTokens,
     loginUser: loginUser,
     logoutUser: logoutUser,
   };
 
   // Call refresh tokens on regular interval
   useEffect(() => {
-    let refreshInterval = 1000 * 60 * 30;
+    if (loading) {
+      updateToken();
+    }
+    let refreshInterval = 1000 * 60 * 25;
     let interval = setInterval(() => {
       if (authTokens) {
         updateToken();
