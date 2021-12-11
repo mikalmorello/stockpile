@@ -23,6 +23,14 @@ function Stockpile() {
     stockpileApi.getStockpile(stockpileId, setStockpile);
   }, [stockpileId]);
 
+  // Format date
+  function formatDate(newDate) {
+    let date = new Date(newDate);
+    let dateMDY = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+    console.log(dateMDY);
+    return dateMDY;
+  }
+
   // If stockpile data is loaded display view
   if (stockpile) {
     return (
@@ -50,21 +58,34 @@ function Stockpile() {
         <section className={styles.stockpile} aria-label="stockpile">
           <div className={styles.subheader_container}>
             <h2 className={styles.subheader}>Stocks</h2>
-            <ul>
-              {stockpile
-                ? stockpile.stocks.map((stock) => (
-                    <li key={stock.id}>
-                      <li>{stock.symbol}</li>
-                      {/* <li>${stock.daily[0].price}</li>
-                    <li>{stock.day_change.percent}%</li>
-                    <li>${stock.day_change.price}</li>
-                    <li>{stock.week_change.percent}%</li>
-                    <li>${stock.week_change.price}</li>
-                    <li>{stock.last_refreshed}</li> */}
-                    </li>
-                  ))
-                : ""}
-            </ul>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Stock</th>
+                  <th>Current Price</th>
+                  <th>Day Change %</th>
+                  <th>Day Change Price</th>
+                  <th>Week Change %</th>
+                  <th>Week Change Price</th>
+                  <th>Last Refreshed</th>
+                </tr>
+              </thead>
+              <tbody>
+                {stockpile
+                  ? stockpile.stocks.map((stock) => (
+                      <tr key={stock.id}>
+                        <td className={styles.symbol}>{stock.symbol}</td>
+                        <td>${stock.daily[0].price}</td>
+                        <td>{stock.day_change.percent}%</td>
+                        <td>${stock.day_change.price}</td>
+                        <td>{stock.week_change.percent}%</td>
+                        <td>${stock.week_change.price}</td>
+                        <td>{formatDate(stock.last_refreshed)}</td>
+                      </tr>
+                    ))
+                  : ""}
+              </tbody>
+            </table>
           </div>
         </section>
       </main>
