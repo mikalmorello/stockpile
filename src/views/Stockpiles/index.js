@@ -48,7 +48,7 @@ function Stockpiles() {
             </tr>
           </thead>
           <tbody>
-            {stockpiles ? (
+            {stockpiles && stockpiles.length ? (
               stockpiles.map((stockpile, index) => (
                 <tr key={stockpile.id}>
                   <td>
