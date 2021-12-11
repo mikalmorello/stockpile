@@ -9,18 +9,34 @@ function Header() {
   if (user) {
     return (
       <header className={styles.header}>
-        <div className={styles.branding}>Stockpile</div>
-        <nav>
-          <Link to="/">Home</Link>
-          {user ? <button onClick={logoutUser}>Logout</button> : <Link to="/login">Login</Link>}
+        <div className={styles.branding}>
+          <img className={styles.branding__image} src="/media/branding.svg" alt="" />
+          Stockpile
+        </div>
+        <nav className={styles.nav}>
+          <Link to="/" className={styles.nav_link}>
+            Home
+          </Link>
+          <Link to="/" className={styles.nav_link}>
+            Stockpiles
+          </Link>
+          <Link to="/" className={styles.nav_link}>
+            Symbols
+          </Link>
+          <button onClick={logoutUser} className={styles.nav_link}>
+            Logout
+          </button>
         </nav>
-        {user && <p>Hello {user.username}</p>}
+        {/* {user && <p>Hello {user.username}</p>} */}
       </header>
     );
   } else {
     return (
       <header className={styles.header}>
-        <h1 className={styles.branding}>Stockpile</h1>
+        <h1 className={styles.branding}>
+          <img className={styles.branding__image} src="/media/branding.svg" alt="" />
+          Stockpile
+        </h1>
       </header>
     );
   }
