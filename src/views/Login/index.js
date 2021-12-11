@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import userApi from "../../hooks/userApi";
 import AuthContext from "../../context/AuthContext";
 import styles from "./Login.module.scss";
 

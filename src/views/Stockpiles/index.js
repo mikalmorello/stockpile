@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import StockpileApi from "../../hooks/stockpileApi";
 import AuthContext from "../../context/AuthContext";
 

@@ -9,7 +9,6 @@ import StockpileAdd from "../../views/StockpileAdd";
 import StockpileEdit from "../../views/StockpileEdit";
 import Users from "../../views/Users";
 import User from "../../views/User";
-import Stocks from "../../views/Stocks";
 import Stock from "../../views/Stock";
 import Symbols from "../../views/Symbols";
 import Login from "../../views/Login";
