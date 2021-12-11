@@ -38,7 +38,7 @@ function Home() {
             .
           </p>
           <p className={styles.intro_body}>Let’s build a new stockpile</p>
-          <Link className={styles.link} to="/stockpile/add">
+          <Link className={styles.link} to="/stockpiles/add">
             Add Stockpile
           </Link>
         </div>

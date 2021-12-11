@@ -1,12 +1,15 @@
+// Dependencies
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import styles from "./Header.module.scss";
 
 function Header() {
-  let { user, logoutUser } = useContext(AuthContext);
+  // State
+  let { user, logoutUser } = useContext(AuthContext),
+    location = useLocation();
 
-  if (user) {
+  if (user && !(location.pathname === "/login")) {
     return (
       <header className={styles.header}>
         <div className={styles.branding}>
