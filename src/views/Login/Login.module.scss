@@ -176,3 +176,15 @@
     color: white;
   }
 }
+
+// Logout
+.logout {
+  display: flex;
+  flex-direction: column;
+  font-family: $sora;
+}
+
+.logout_button {
+  display: flex;
+  margin: 1.5rem 0;
+}

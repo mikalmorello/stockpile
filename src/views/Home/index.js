@@ -31,7 +31,7 @@ function Home() {
         </div>
         <div>
           <p className={styles.intro_text}>
-            Welcome,{" "}
+            Welcome,
             <Link className={styles.user} to={`/users/${user.id}`}>
               {user.username}
             </Link>
