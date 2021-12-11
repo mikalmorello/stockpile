@@ -23,6 +23,9 @@ function Header() {
           <Link to="/symbols" className={styles.nav_link}>
             Symbols
           </Link>
+          <Link to="/users" className={styles.nav_link}>
+            Users
+          </Link>
           <button onClick={logoutUser} className={styles.nav_link}>
             Logout
           </button>
