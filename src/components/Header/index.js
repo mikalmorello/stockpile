@@ -26,9 +26,6 @@ function Header() {
           <Link to="/symbols" className={styles.nav_link}>
             Symbols
           </Link>
-          <Link to="/users" className={styles.nav_link}>
-            Users
-          </Link>
           <Link to="/profile" className={styles.nav_link}>
             Profile
           </Link>

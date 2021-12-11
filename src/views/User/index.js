@@ -1,6 +1,8 @@
+// Dependencies
 import React from "react";
 import { useParams } from "react-router-dom";
 import userApi from "../../hooks/userApi";
+import { Link } from "react-router-dom";
 
 // Styles
 import styles from "./User.module.scss";
@@ -29,6 +31,12 @@ function User() {
           <div className={styles.details}>
             <div className={styles.name}>
               <div className={styles.intro_text}>{user.username}</div>
+            </div>
+            <div className={styles.other_users}>
+              <span>View all:</span>
+              <Link className={styles.users_link} to={"/users"}>
+                Users
+              </Link>
             </div>
           </div>
         </section>

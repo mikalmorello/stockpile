@@ -107,3 +107,18 @@
     font-weight: 600;
   }
 }
+
+// Other users
+.other_users {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.users_link {
+  font-size: 1.5rem;
+  padding-left: 0.5rem;
+  &:hover {
+    text-decoration: none;
+  }
+}
