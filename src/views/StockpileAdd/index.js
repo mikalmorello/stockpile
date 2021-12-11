@@ -4,6 +4,9 @@ import WindowedSelect from "react-windowed-select";
 import symbolApi from "../../hooks/symbolApi";
 import { createFilter } from "react-windowed-select";
 
+// Styles
+import styles from "./StockpileAdd.module.scss";
+
 // Environment variables
 const { REACT_APP_STOCKPILE_API_URL } = process.env;
 
@@ -61,22 +64,45 @@ function StockpileAdd() {
   };
 
   return (
-    <main>
-      <h1>Add stockpile</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Title:</label>
-        <input id="title" name="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
-        <WindowedSelect
-          isOptionDisabled={(option) => selectedOptions.length >= selectLimit}
-          value={selectedOptions}
-          onChange={onchangeSelect}
-          options={options}
-          filterOption={customFilter}
-          isMulti
-          //
-        />
-        <button type="submit">Submit</button>
-      </form>
+    <main className={styles.main}>
+      <section className={styles.intro} aria-label="Welcome">
+        <div className={styles.header_container}>
+          <h1 className={styles.header}>Add</h1>
+        </div>
+        <div>
+          <p className={styles.intro_text}>Create a new stockpile:</p>
+        </div>
+      </section>
+      <section className={styles.form} aria-label="form">
+        <form onSubmit={handleSubmit}>
+          <div className={styles.input_group}>
+            <label className={styles.label} htmlFor="title">
+              Add a name:
+            </label>
+            <input className={styles.input} id="title" name="title" type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+          </div>
+          <div className={styles.input_group}>
+            <label className={styles.label} htmlFor="symbols">
+              Select symbols:
+            </label>
+            <WindowedSelect
+              isOptionDisabled={(option) => selectedOptions.length >= selectLimit}
+              value={selectedOptions}
+              onChange={onchangeSelect}
+              options={options}
+              filterOption={customFilter}
+              isMulti
+              id="symbols"
+              //
+            />
+          </div>
+          <div className={styles.button_group}>
+            <button className={styles.button} type="submit">
+              Create Stockpile
+            </button>
+          </div>
+        </form>
+      </section>
     </main>
   );
 }
