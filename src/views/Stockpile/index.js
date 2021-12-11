@@ -34,7 +34,7 @@ function Stockpile() {
   // If stockpile data is loaded display view
 
   return (
-    <main className={styles.main} id={stockpile.id}>
+    <main className={styles.main} id={stockpile ? stockpile.id : ""}>
       <section className={styles.intro} aria-label="Intro">
         <div className={styles.header_container}>
           <h1 className={styles.header}>Stockpile</h1>
@@ -42,9 +42,9 @@ function Stockpile() {
         <div className={styles.details}>
           <div className={styles.name}>
             <div className={styles.intro_text}>
-              {stockpile.title}
+              {stockpile ? stockpile.title : "Loading..."}
               <span className={styles.owner}>
-                (by <Link to={`/users/${stockpile.creator.id}`}>{stockpile.creator.username}</Link>)
+                (by <Link to={`/users/${stockpile ? stockpile.creator.id : ""}`}>{stockpile ? stockpile.creator.username : ""}</Link>)
               </span>
             </div>
           </div>

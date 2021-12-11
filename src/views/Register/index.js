@@ -10,6 +10,7 @@ const Register = () => {
         </div>
         <div>
           <p className={styles.intro_text}>Create a user account</p>
+          Already have an account?
           <Link className={styles.link} to="/login">
             Login
           </Link>

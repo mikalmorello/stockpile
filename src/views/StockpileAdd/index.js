@@ -27,7 +27,6 @@ function StockpileAdd() {
   // Get stock symbols
   React.useEffect(() => {
     symbolApi.getSymbols(setSymbols);
-    console.log("is this running");
   }, []);
 
   // Create options from stock symbols
@@ -43,8 +42,23 @@ function StockpileAdd() {
     }
   }, [symbols]);
 
-  console.log("selected Options");
-  console.log(selectedOptions);
+  // Styles
+  const customStyles = {
+    control: (styles) => ({
+      ...styles,
+      border: "2px solid black",
+      borderRadius: "0",
+      padding: "0.25rem",
+    }),
+    dropdownIndicator: (styles) => ({
+      ...styles,
+      fill: "#191919",
+    }),
+    placeholder: (styles) => ({
+      ...styles,
+      color: "#191919",
+    }),
+  };
 
   // Handle form submission
   const handleSubmit = (e) => {
@@ -93,6 +107,7 @@ function StockpileAdd() {
               filterOption={customFilter}
               isMulti
               id="symbols"
+              styles={customStyles}
               //
             />
           </div>
