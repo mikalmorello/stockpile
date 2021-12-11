@@ -17,17 +17,16 @@ function Header() {
           <Link to="/" className={styles.nav_link}>
             Home
           </Link>
-          <Link to="/" className={styles.nav_link}>
+          <Link to="/stockpiles" className={styles.nav_link}>
             Stockpiles
           </Link>
-          <Link to="/" className={styles.nav_link}>
+          <Link to="/symbols" className={styles.nav_link}>
             Symbols
           </Link>
           <button onClick={logoutUser} className={styles.nav_link}>
             Logout
           </button>
         </nav>
-        {/* {user && <p>Hello {user.username}</p>} */}
       </header>
     );
   } else {

@@ -42,14 +42,12 @@
   padding: 0.5rem 0.75rem;
   position: relative;
   text-decoration: none;
-  &::before,
-  &:active,
-  &:focus {
+  &::before {
     background-color: $button-overlay;
     bottom: 0.25rem;
     content: "";
     height: 0;
-    left: 0rem;
+    left: 0;
     position: absolute;
     transition: all 0.3s ease-in-out;
     width: 100%;
