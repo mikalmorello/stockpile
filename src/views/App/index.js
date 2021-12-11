@@ -36,11 +36,9 @@ function App() {
             <Route path="/stockpiles/add" element={<StockpileAdd />} />
             <Route path="/users" element={<Users />}></Route>
             <Route path="/users/:userId" element={<User />} />
-            <Route path="/stocks" element={<Stocks />}>
-              <Route path=":stockSymbol" element={<Stock />} />
-            </Route>
+            <Route path="/symbols" element={<Symbols />} />
+            <Route path="/symbols/:stockSymbol" element={<Stock />} />
           </Route>
-          <Route path="/symbols" element={<Symbols />} />
           <Route
             path="*"
             element={

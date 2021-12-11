@@ -90,34 +90,6 @@
   }
 }
 
-.subheader_container {
-  display: flex;
-  justify-content: flex-end;
-  margin: 0 0 2rem;
-  max-width: 14rem;
-  position: relative;
-  z-index: 0;
-}
-
-.subheader {
-  background: white;
-  display: inline-block;
-  font-family: $sora;
-  font-weight: bold;
-  font-size: 1rem;
-  padding-left: 1rem;
-  text-transform: uppercase;
-  &:after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    border-top: 2px solid rgba(0, 0, 0, 1);
-    z-index: -1;
-  }
-}
-
 .link {
   color: $text-dark;
   display: inline-block;
@@ -158,29 +130,28 @@
   width: 50rem;
 }
 
-// Tables
-
-.table {
-  border-collapse: collapse;
-  width: 100%;
-  th {
-    border-bottom: 1px solid $border-dark;
-    padding-bottom: 1rem;
-    text-align: left;
-  }
-  td {
-    padding: 1rem 0;
+.symbols {
+  list-style: none;
+  li {
+    display: flex;
+    padding: 0.5rem 0;
   }
 }
 
-//Accessibility
+.symbol {
+  color: $text-dark;
+  font-family: $roboto;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding-right: 0.5rem;
+  &:hover {
+    text-decoration: none;
+  }
+}
 
-.visually_hidden {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
+.stock_name {
+  font-family: $sora;
+  font-size: 1rem;
+  font-weight: 400;
+  padding-left: 0.5rem;
 }
