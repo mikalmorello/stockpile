@@ -1,0 +1,29 @@
+@import "../../styles/_colors.scss";
+@import "../../styles/_fonts.scss";
+
+// General
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  min-height: 100vh;
+  overflow: auto;
+}
+
+body {
+  //
+  background: url("/media/triangle-background.svg") right top no-repeat, linear-gradient($body-dark, $body-light);
+  background-size: contain, cover;
+  background-repeat: no-repeat;
+  color: $text-dark;
+  font-size: 16px;
+  margin: 0;
+}
+
+a {
+  color: $text-dark;
+}

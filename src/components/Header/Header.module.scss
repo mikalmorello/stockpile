@@ -1,0 +1,80 @@
+// Imports
+@import "../../styles/_colors.scss";
+@import "../../styles/_fonts.scss";
+@import "../../styles/_breakpoints.scss";
+
+.header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: -12.75rem;
+  padding: 3rem 6rem;
+  position: relative;
+  width: 100vw;
+  z-index: 2;
+  @include desktop {
+    flex-direction: row;
+    margin-bottom: -10rem;
+  }
+}
+
+.branding {
+  flex-grow: 1;
+  font-family: $sora;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
+}
+
+.branding__image {
+  margin-right: 0.5rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 0.5rem;
+  @include desktop {
+    justify-content: space-around;
+    justify-self: flex-end;
+    margin-top: 0;
+  }
+}
+
+.nav_link {
+  background: none;
+  border: none;
+  color: $text-dark;
+  cursor: pointer;
+  font-family: $sora;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0.25rem;
+  padding: 0.5rem 0.75rem;
+  position: relative;
+  text-decoration: none;
+  @include desktop {
+    font-size: 1.15rem;
+    padding: 0.5rem 0.5rem;
+  }
+  &::before {
+    background-color: $button-overlay;
+    bottom: 0.25rem;
+    content: "";
+    height: 0;
+    left: 0;
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    z-index: -1;
+  }
+  &:hover::before,
+  &:active::before,
+  &:focus::before {
+    background-color: $button-overlay;
+    height: 0.6rem;
+    width: 100%;
+  }
+}

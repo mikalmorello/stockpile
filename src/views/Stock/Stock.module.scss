@@ -1,0 +1,166 @@
+// Imports
+@import "../../styles/_colors.scss";
+@import "../../styles/_fonts.scss";
+@import "../../styles/_shadows.scss";
+@import "../../styles/_breakpoints.scss";
+
+.main {
+  align-items: center;
+  background: $content-primary;
+  box-shadow: $shadow-medium;
+  display: flex;
+  flex-direction: column;
+  font-family: $sora;
+  min-height: 80vh;
+  padding: 6rem 2rem;
+  position: relative;
+  @include desktop {
+    padding: 6rem;
+  }
+  &:after {
+    border: 2px solid rgba($color: #fff, $alpha: 0.5);
+    content: "";
+    height: 100%;
+    left: -0.25rem;
+    position: absolute;
+    top: 2.5rem;
+    width: calc(100% - 2.5rem);
+    z-index: -1;
+  }
+}
+
+// Intro Section
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  font-family: $roboto;
+  line-height: 1.35em;
+  margin: 5.5rem 0 2rem;
+  padding: 0 2.5rem;
+  position: relative;
+  width: 100%;
+  @include desktop {
+    padding: 0 5rem;
+    width: 85rem;
+  }
+}
+
+.intro_text {
+  font-size: 2.5rem;
+  margin: 0 0 2.25rem 0;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  @include desktop {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.header_container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+  position: relative;
+  width: 12rem;
+  z-index: 0;
+}
+
+.header {
+  background: $content-primary;
+  color: $accent;
+  display: inline-block;
+  font-family: $sora;
+  font-weight: bold;
+  font-size: 1rem;
+  padding-left: 1rem;
+  text-transform: uppercase;
+  &:after {
+    border-top: 2px solid $accent;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: -1;
+  }
+}
+
+.name {
+  flex-grow: 1;
+}
+
+// Stock Section
+
+.stock {
+  background: $content-secondary;
+  box-shadow: $shadow-light;
+  margin: 0 0 -7.5rem 0;
+  min-height: 30rem;
+  padding: 3rem 1.5rem;
+  width: 100%;
+  @include desktop {
+    padding: 5rem;
+    width: 85rem;
+  }
+}
+
+.symbol {
+  font-family: $roboto;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.daily {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  @include desktop {
+    flex-direction: row;
+  }
+}
+
+.day {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+  @include desktop {
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 0;
+    width: auto;
+  }
+}
+
+.date {
+  padding: 0 1.5rem 0 0;
+  position: relative;
+  @include desktop {
+    margin-bottom: 0.75rem;
+    padding: 0 0 0.75rem 0;
+  }
+  &:after {
+    @include desktop {
+      content: "";
+      position: absolute;
+      width: 30%;
+      height: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      background: #000;
+    }
+  }
+}
+
+.price {
+  font-family: $roboto;
+  font-size: 1.4rem;
+  font-weight: 600;
+}

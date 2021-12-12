@@ -1,0 +1,179 @@
+// Imports
+@import "../../styles/_colors.scss";
+@import "../../styles/_fonts.scss";
+@import "../../styles/_shadows.scss";
+@import "../../styles/_breakpoints.scss";
+
+.main {
+  background: $content-primary;
+  box-shadow: $shadow-medium;
+  display: flex;
+  flex-direction: column;
+  font-family: $sora;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 6rem 2rem;
+  position: relative;
+  @include desktop {
+    flex-direction: row;
+    padding: 6rem;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    width: calc(100% - 2.5rem);
+    height: 100%;
+    border: 2px solid rgba($color: #fff, $alpha: 0.5);
+    left: -0.25rem;
+    top: 2.5rem;
+    z-index: -1;
+  }
+}
+
+// Intro Section
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  font-family: $roboto;
+  line-height: 1.35em;
+  position: relative;
+  width: 100%;
+  @include desktop {
+    padding: 0 5rem;
+    width: 35rem;
+  }
+}
+
+.intro_text {
+  font-size: 2rem;
+  line-height: 1.35em;
+  margin: 0 0 2.25rem 0;
+  max-width: 25rem;
+}
+
+.intro_body {
+  font-family: $sora;
+  font-size: 1.4rem;
+  line-height: 1.35em;
+  max-width: 15rem;
+}
+
+.header_container {
+  display: flex;
+  justify-content: flex-end;
+  margin: 8.5rem 0 2rem;
+  width: 12rem;
+  position: relative;
+  z-index: 0;
+  @include desktop {
+    margin: 8.5rem 0 2rem;
+  }
+}
+
+.header {
+  background: $content-primary;
+  color: $accent;
+  display: inline-block;
+  font-family: $sora;
+  font-weight: bold;
+  font-size: 1rem;
+  padding-left: 1rem;
+  text-transform: uppercase;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    border-top: 2px solid $accent;
+    z-index: -1;
+  }
+}
+
+.link {
+  color: $text-dark;
+  display: inline-block;
+  font-size: 1.45rem;
+  margin-top: 2rem;
+  position: relative;
+  width: auto;
+  z-index: 1;
+  &:hover {
+    text-decoration: none;
+  }
+  &::before {
+    background-color: $button-overlay;
+    bottom: -0.15rem;
+    content: "";
+    height: 0.6rem;
+    left: 0.5rem;
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    z-index: -1;
+  }
+  &:hover::before {
+    bottom: 0;
+    height: 100%;
+    left: -0.5rem;
+    width: calc(100% + 0.8rem);
+  }
+}
+
+// Form
+
+.form {
+  background: $content-secondary;
+  box-shadow: $shadow-light;
+  min-height: 20rem;
+  padding: 1.5rem;
+  @include desktop {
+    margin: 3.5rem 8rem -7.5rem 0;
+    padding: 5rem;
+    width: 50rem;
+  }
+}
+
+.input_group {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 0;
+}
+
+.input {
+  border: 2px solid #000;
+  font-size: 1.25rem;
+  padding: 0.5rem;
+}
+
+.label {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  padding-bottom: 0.75rem;
+}
+
+.button_group {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1.5rem 0;
+}
+
+.button {
+  background: none;
+  border: 2px solid $border-dark;
+  color: #000;
+  font-size: 1.25rem;
+  justify-self: flex-end;
+  margin: 0.5rem 0;
+  padding: 0.75rem 2rem;
+  transition: all 0.5s ease;
+  width: auto;
+  &:hover,
+  &:active,
+  &:focus {
+    background: $button-active;
+    color: white;
+  }
+}

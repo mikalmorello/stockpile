@@ -3,6 +3,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import symbolApi from "../../hooks/symbolApi";
 
+// Styles
+import styles from "./Symbols.module.scss";
+
 function Symbols() {
   const [symbols, setSymbols] = React.useState();
 
@@ -11,27 +14,32 @@ function Symbols() {
     symbolApi.getSymbols(setSymbols);
   }, []);
 
-  if (symbols) {
-    return (
-      <main>
-        <h1>Symbols</h1>
-        <ul>
-          {symbols.map((symbol, index) => (
-            <li key={symbol.id}>
-              <Link to={`/stocks/${symbol.symbol}`}>
-                {symbol.symbol}: {symbol.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </main>
-    );
-  }
-
-  // Else return waiting view
   return (
-    <main>
-      <h1>Waiting</h1>
+    <main className={styles.main}>
+      <section className={styles.intro} aria-label="Welcome">
+        <div className={styles.header_container}>
+          <h1 className={styles.header}>Stock Options</h1>
+        </div>
+        <div>
+          <p className={styles.intro_text}>A list of all available stock symbols</p>
+        </div>
+      </section>
+      <section className={styles.stockpiles} aria-label="stockpiles">
+        <ul className={styles.symbols}>
+          {symbols ? (
+            symbols.map((symbol, index) => (
+              <li key={symbol.id}>
+                <Link className={styles.symbol} to={`/symbols/${symbol.symbol}`}>
+                  {symbol.symbol}
+                </Link>
+                :<span className={styles.stock_name}>{symbol.name}</span>
+              </li>
+            ))
+          ) : (
+            <li>Symbols loading...</li>
+          )}
+        </ul>
+      </section>
     </main>
   );
 }

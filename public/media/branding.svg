@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="54px" height="57px" viewBox="0 0 54 57" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>Logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M0.104939303,51.8240016 L0.104939303,39.4267122 C0.302876628,25.6303026 7.4196561,18.7320978 21.4552777,18.7320978 C35.4908993,18.7320978 43.4664128,16.5128783 45.3818182,12.0744394 L45.3818182,25.2246783 C44.069659,38.7868623 36.0941455,45.5679543 21.4552777,45.5679543 C6.81640994,45.5679543 -0.300369532,47.6533034 0.104939303,51.8240016 Z" id="path-1"></path>
+        <filter x="-15.5%" y="-12.6%" width="130.9%" height="135.2%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.138444807 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M0.0163792864,45.7586555 L0.0163792864,33.3613661 C0.214316611,19.5649565 7.33109608,12.6667517 21.3667177,12.6667517 C35.4023393,12.6667517 43.3778528,10.4475323 45.2932582,6.00909331 L45.2932582,19.1593322 C43.981099,32.7215162 36.0055855,39.5026083 21.3667177,39.5026083 C6.72784992,39.5026083 -0.388929549,41.5879573 0.0163792864,45.7586555 Z" id="path-3"></path>
+        <filter x="-15.5%" y="-12.6%" width="130.9%" height="135.2%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.169027262 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Version-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Homepage" transform="translate(-107.000000, -43.000000)">
+            <g id="Logo" transform="translate(134.000000, 69.186875) scale(-1, 1) translate(-134.000000, -69.186875) translate(111.000000, 43.186875)">
+                <path d="M0.104939303,39.7495622 L0.104939303,27.3522728 C0.302876628,13.5558632 7.4196561,6.65765842 21.4552777,6.65765842 C35.4908993,6.65765842 43.4664128,4.43843894 45.3818182,-2.2392862e-14 L45.3818182,13.1502389 C44.069659,26.7124229 36.0941455,33.4935149 21.4552777,33.4935149 C6.81640994,33.4935149 -0.300369532,35.578864 0.104939303,39.7495622 Z" id="Path-7" fill="#FAAE9D"></path>
+                <g id="Path-7">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#F7A5BB" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <g id="Path-7">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                    <use fill="#BA3B6D" fill-rule="evenodd" xlink:href="#path-3"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

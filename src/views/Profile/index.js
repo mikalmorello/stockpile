@@ -1,31 +1,48 @@
-import React from "react";
-import userApi from "../../hooks/userApi";
+// Dependencies
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
+
+// Styles
+import styles from "./Profile.module.scss";
 
 function Profile() {
   // Set State
-  const [activeUser, setActiveUser] = React.useState();
+  let { user } = useContext(AuthContext);
 
-  // Get Active user
-  React.useEffect(() => {
-    // Get the active user
-    userApi.getActiveUser(setActiveUser);
-  }, []);
-
-  if (activeUser) {
-    return (
-      <main>
-        <h1>User Profile</h1>
-        <ul>
-          <li>{activeUser.username}</li>
-        </ul>
-      </main>
-    );
-  }
-
-  // Else display loading screen
   return (
-    <main>
-      <h1>Waiting</h1>
+    <main className={styles.main} id={user ? user.id : ""}>
+      <section className={styles.intro} aria-label="Intro">
+        <div className={styles.header_container}>
+          <h1 className={styles.header}>Profile</h1>
+        </div>
+        <div className={styles.details}>
+          <div className={styles.name}>
+            <div className={styles.intro_text}>{user ? user.username : "Loading..."}</div>
+          </div>
+          <div className={styles.other_users}>
+            <span>View all:</span>
+            <Link className={styles.users_link} to={"/users"}>
+              Users
+            </Link>
+          </div>
+        </div>
+      </section>
+      <section className={styles.user_details} aria-label="user details">
+        <div className={styles.subheader_container}>
+          <h2 className={styles.subheader}>Your Details</h2>
+        </div>
+        {user ? (
+          <dl className={styles.dl}>
+            <dt>Email:</dt>
+            <dd>
+              <a href={`mailto:${user.email}`}>{user.email}</a>
+            </dd>
+          </dl>
+        ) : (
+          "Loading..."
+        )}
+      </section>
     </main>
   );
 }
