@@ -24,12 +24,17 @@ const userApi = {
         console.log(error);
       });
   },
-  getUser: function (userId, setUser) {
+  getUser: function (userId, setUser, authTokens) {
     // API url
     let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/users/${userId}`;
 
     // Get user
-    fetch(apiUrl)
+    fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + String(authTokens.access),
+      },
+    })
       .then((response) => response.json())
       .then(function (data) {
         // Set the user data

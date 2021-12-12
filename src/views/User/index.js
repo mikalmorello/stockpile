@@ -3,6 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import userApi from "../../hooks/userApi";
 import { Link } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
 
 // Styles
 import styles from "./User.module.scss";
@@ -13,12 +14,13 @@ function User() {
     userId = params.userId;
 
   // State
-  const [user, setUser] = React.useState();
+  const [user, setUser] = React.useState(),
+    { authTokens } = React.useContext(AuthContext);
 
   // Get User data
   React.useEffect(() => {
-    userApi.getUser(userId, setUser);
-  }, [userId]);
+    userApi.getUser(userId, setUser, authTokens);
+  }, [userId, authTokens]);
 
   return (
     <main className={styles.main} id={user ? user.id : ""}>
