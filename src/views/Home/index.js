@@ -32,7 +32,7 @@ function Home() {
         <div>
           <p className={styles.intro_text}>
             Welcome,
-            <Link className={styles.user} to={`/users/${user.id}`}>
+            <Link className={styles.user} to={`/profile`}>
               {user.username}
             </Link>
             .
