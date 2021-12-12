@@ -4,6 +4,7 @@ import WindowedSelect from "react-windowed-select";
 import symbolApi from "../../hooks/symbolApi";
 import { createFilter } from "react-windowed-select";
 import AuthContext from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 // Styles
 import styles from "./StockpileAdd.module.scss";
@@ -19,7 +20,8 @@ function StockpileAdd() {
     [options, setOptions] = React.useState([]),
     customFilter = createFilter({ ignoreAccents: false }),
     selectLimit = 5,
-    { authTokens } = React.useContext(AuthContext);
+    { authTokens } = React.useContext(AuthContext),
+    navigate = useNavigate();
 
   // Handle select
   const onchangeSelect = (options) => {
@@ -85,7 +87,16 @@ function StockpileAdd() {
         title: title,
         stocks: selectedOptions,
       }),
-    });
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // Redirect to the home page
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -119,6 +130,7 @@ function StockpileAdd() {
               isMulti
               id="symbols"
               styles={customStyles}
+              required
               //
             />
           </div>
