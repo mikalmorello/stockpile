@@ -45,6 +45,32 @@ const userApi = {
         console.log(error);
       });
   },
+  registerUser: function (submission) {
+    console.log("REGISTRATION");
+    console.log(submission);
+    // API url
+    let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/register`;
+
+    // Create FormData object
+    let formData = new FormData();
+
+    // Add submission data
+    formData.append("username", submission.username);
+    formData.append("email", submission.email);
+    formData.append("password", submission.password);
+    formData.append("confirmation", submission.confirmation);
+
+    // Get user
+    fetch(apiUrl, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .catch((error) => {
+        // Log out the error
+        console.log(error);
+      });
+  },
   getToken: function (submission) {
     // API url
     let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/token`;
@@ -62,6 +88,10 @@ const userApi = {
       body: formData,
     })
       .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        return true;
+      })
       .catch((error) => {
         // Log out the error
         console.log(error);
