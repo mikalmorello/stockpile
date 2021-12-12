@@ -3,6 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import stockpileApi from "../../hooks/stockpileApi";
 import { Link } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
 
 // SVG
 import Svg from "../../svg/Svg.js";
@@ -16,12 +17,13 @@ function Stockpile() {
     stockpileId = params.stockpileId;
 
   // Set state
-  const [stockpile, setStockpile] = React.useState();
+  const [stockpile, setStockpile] = React.useState(),
+    { authTokens } = React.useContext(AuthContext);
 
   // Get stockpile
   React.useEffect(() => {
-    stockpileApi.getStockpile(stockpileId, setStockpile);
-  }, [stockpileId]);
+    stockpileApi.getStockpile(stockpileId, setStockpile, authTokens);
+  }, [stockpileId, authTokens]);
 
   // Format date
   function formatDate(newDate) {

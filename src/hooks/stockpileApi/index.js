@@ -45,12 +45,17 @@ const stockpileAPI = {
         console.log(error);
       });
   },
-  getStockpile: function (stockpileId, setStockpile) {
+  getStockpile: function (stockpileId, setStockpile, authTokens) {
     // API url
     let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/stockpiles/${stockpileId}`;
 
     // Get a stockpile
-    fetch(apiUrl)
+    fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + String(authTokens.access),
+      },
+    })
       .then((response) => response.json())
       .then(function (data) {
         // Set the stockpile data
