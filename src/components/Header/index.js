@@ -13,8 +13,10 @@ function Header() {
     return (
       <header className={styles.header}>
         <div className={styles.branding}>
-          <img className={styles.branding__image} src="/media/branding.svg" alt="" />
-          Stockpile
+          <Link to={"/"}>
+            <img className={styles.branding__image} src="/media/branding.svg" alt="" />
+            Stockpile
+          </Link>
         </div>
         <nav className={styles.nav}>
           <Link to="/" className={styles.nav_link}>
