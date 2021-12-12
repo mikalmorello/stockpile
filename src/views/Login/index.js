@@ -1,10 +1,13 @@
+// Dependencies
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import styles from "./Login.module.scss";
 
 const Login = () => {
+  // Set State
   let { user, loginUser, logoutUser } = useContext(AuthContext);
+
   return (
     <main className={styles.main}>
       <section className={styles.intro} aria-label="Intro">
@@ -28,13 +31,13 @@ const Login = () => {
               <label className={styles.label} htmlFor="username">
                 Username
               </label>
-              <input className={styles.input} type="text" id="username" name="username" required />
+              <input className={styles.input} type="text" id="username" name="username" autoComplete="on" required />
             </div>
             <div className={styles.input_group}>
               <label className={styles.label} htmlFor="password">
                 Password
               </label>
-              <input className={styles.input} type="password" id="password" name="password" required />
+              <input className={styles.input} type="password" id="password" name="password" autoComplete="on" required />
             </div>
             <div className={styles.button_group}>
               <button className={styles.button} type="submit">

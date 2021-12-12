@@ -1,57 +1,60 @@
 // Environment variables
 const { REACT_APP_STOCKPILE_API_URL } = process.env;
 
+// User API functions
 const userApi = {
   getUsers: function (setUsers) {
-    // Get all users
+    // API url
     let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/users`;
 
+    // Get all users
     fetch(apiUrl)
-      .then(function (promise) {
-        return promise.json();
-      })
+      .then((response) => response.json())
       .then(function (data) {
-        console.log(data);
+        // Set the users data
         setUsers(data);
+      })
+      .catch((error) => {
+        // Log out the error
+        console.log(error);
       });
   },
   getUser: function (userId, setUser) {
-    // Get user
+    // API url
     let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/users/${userId}`;
 
+    // Get user
     fetch(apiUrl)
-      .then(function (promise) {
-        return promise.json();
-      })
+      .then((response) => response.json())
       .then(function (data) {
-        console.log(data);
+        // Set the user data
         setUser(data);
+      })
+      .catch((error) => {
+        // Log out the error
+        console.log(error);
       });
   },
   getToken: function (submission) {
-    console.log("get token");
-    console.log(submission);
+    // API url
+    let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/token`;
 
     // Create FormData object
     let formData = new FormData();
-    formData.append("username", submission.username);
 
-    console.log(submission.username);
+    // Add username and password to FormData
+    formData.append("username", submission.username);
     formData.append("password", submission.password);
 
     // Get Auth Token
-    let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/token`;
-
     fetch(apiUrl, {
       method: "POST",
       body: formData,
     })
-      .then(function (promise) {
-        return promise.json();
-      })
-      .then((data) => {
-        // Log out the token
-        console.log(data);
+      .then((response) => response.json())
+      .catch((error) => {
+        // Log out the error
+        console.log(error);
       });
   },
 };

@@ -4,6 +4,7 @@
 @import "../../styles/_shadows.scss";
 @import "../../styles/_breakpoints.scss";
 
+// Main
 .main {
   display: flex;
   flex-direction: column;
@@ -12,6 +13,7 @@
   }
 }
 
+// Intro
 .intro {
   background: $content-primary;
   box-shadow: $shadow-medium;
@@ -49,6 +51,7 @@
   max-width: 25rem;
 }
 
+// Header
 .header_container {
   display: flex;
   justify-content: flex-end;
@@ -136,12 +139,14 @@
   }
 }
 
+// Form
 .form {
   @include desktop {
     width: 22rem;
   }
 }
 
+// Login
 .login {
   background: $content-secondary;
   box-shadow: $shadow-light;

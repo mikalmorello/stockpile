@@ -27,29 +27,25 @@ function StockpileEdit() {
   // Define redirect function
   const navigate = useNavigate();
 
+  // Delete stockpile
   const deleteStockpile = function () {
-    console.log("delete stockpile");
     stockpileApi
       .deleteStockpile(stockpileId)
       .then(() => {
-        console.log("redirect running");
         // Redirect to the stockpiles page
         navigate("/stockpiles");
       })
       .catch((error) => {
-        console.log("error");
+        // Log out error
         console.log(error);
       });
   };
 
-  // Check if the stockpile is user owned
+  // Check stockpile owner
   React.useEffect(() => {
+    // Check if stockpile was created by user
     if (user && stockpile && user.username === stockpile.creator.username) {
-      // console.log("user");
-      // console.log(user.username);
-      // console.log("creator");
-      // console.log(stockpile.creator.username);
-      console.log("users are the same");
+      // Set state to user owned
       setUserOwned(true);
     }
   }, [user, stockpile]);

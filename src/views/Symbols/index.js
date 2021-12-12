@@ -7,6 +7,7 @@ import symbolApi from "../../hooks/symbolApi";
 import styles from "./Symbols.module.scss";
 
 function Symbols() {
+  // Set state
   const [symbols, setSymbols] = React.useState();
 
   // Get stock symbols

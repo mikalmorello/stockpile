@@ -15,15 +15,14 @@ function Stock() {
   // Set State
   const [stock, setStock] = React.useState();
 
+  // Get stock
   React.useEffect(() => {
     stockApi.getStock(stockSymbol, setStock);
   }, [stockSymbol]);
 
-  // If stock data is loaded display view
-
   return (
     <main className={styles.main}>
-      <section className={styles.intro} aria-label="Welcome">
+      <section className={styles.intro} aria-label="stock">
         <div className={styles.header_container}>
           <h1 className={styles.header}>Stock</h1>
         </div>
@@ -31,7 +30,7 @@ function Stock() {
           <div className={styles.intro_text}>{stock ? stock.symbol : ""}</div>
         </div>
       </section>
-      <section className={styles.stock} aria-label="stock">
+      <section className={styles.stock} aria-label="stock data">
         <div className={styles.subheader_container}>
           <h2 className={styles.subheader}>Last 5 Days</h2>
         </div>

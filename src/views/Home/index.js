@@ -11,7 +11,7 @@ import Svg from "../../svg/Svg.js";
 import styles from "./Home.module.scss";
 
 function Home() {
-  // State
+  // Set State
   const [stockpiles, setStockpiles] = React.useState(),
     { authTokens, user } = React.useContext(AuthContext);
 

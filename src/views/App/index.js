@@ -13,9 +13,12 @@ import Stock from "../../views/Stock";
 import Symbols from "../../views/Symbols";
 import Login from "../../views/Login";
 import Register from "../../views/Register";
+import Missing from "../../views/Missing";
 import Header from "../../components/Header";
 import PrivateRoute from "../../utils/PrivateRoute";
 import { AuthProvider } from "../../context/AuthContext";
+
+// Styles
 import "./App.scss";
 
 function App() {
@@ -38,14 +41,7 @@ function App() {
             <Route path="/symbols" element={<Symbols />} />
             <Route path="/symbols/:stockSymbol" element={<Stock />} />
           </Route>
-          <Route
-            path="*"
-            element={
-              <main>
-                <h1>There's nothing here!</h1>
-              </main>
-            }
-          />
+          <Route path="*" element={<Missing />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

@@ -4,6 +4,7 @@
 @import "../../styles/_shadows.scss";
 @import "../../styles/_breakpoints.scss";
 
+// Main
 .main {
   background: $content-primary;
   box-shadow: $shadow-medium;
@@ -31,7 +32,6 @@
 }
 
 // Intro Section
-
 .intro {
   display: flex;
   flex-direction: column;
@@ -60,6 +60,7 @@
   max-width: 15rem;
 }
 
+// Heading
 .header_container {
   display: flex;
   justify-content: flex-end;
@@ -162,7 +163,6 @@
 }
 
 // Stockpiles Section
-
 .stockpiles {
   background: $content-secondary;
   box-shadow: $shadow-light;
@@ -177,7 +177,6 @@
 }
 
 // Tables
-
 .table_container {
   overflow-x: auto;
 }
@@ -196,7 +195,6 @@
 }
 
 //Accessibility
-
 .visually_hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);

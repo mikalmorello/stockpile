@@ -31,8 +31,6 @@ function Stockpile() {
     return dateMDY;
   }
 
-  // If stockpile data is loaded display view
-
   return (
     <main className={styles.main} id={stockpile ? stockpile.id : ""}>
       <section className={styles.intro} aria-label="Intro">

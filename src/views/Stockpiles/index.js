@@ -14,9 +14,6 @@ function Stockpiles() {
   const [stockpiles, setStockpiles] = React.useState(),
     { authTokens } = React.useContext(AuthContext);
 
-  console.log("get auth");
-  console.log(authTokens);
-
   // Get location to refresh page (hack)
   const location = useLocation();
 
@@ -24,8 +21,6 @@ function Stockpiles() {
   React.useEffect(() => {
     StockpileApi.getStockpiles(setStockpiles, authTokens);
   }, [location.key, authTokens]);
-
-  // If the stockpiles data is available
 
   return (
     <main className={styles.main}>

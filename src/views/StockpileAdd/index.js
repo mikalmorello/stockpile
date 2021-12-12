@@ -77,7 +77,7 @@ function StockpileAdd() {
     // Prevent default form submission
     e.preventDefault();
 
-    // Connect to API
+    // Create API
     return fetch(`${REACT_APP_STOCKPILE_API_URL}/api/stockpiles/create`, {
       method: "POST",
       headers: {
@@ -95,6 +95,7 @@ function StockpileAdd() {
         navigate("/");
       })
       .catch((error) => {
+        // Log error to console
         console.log(error);
       });
   };
