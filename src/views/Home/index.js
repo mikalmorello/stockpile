@@ -52,7 +52,7 @@ function Home() {
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Daily %</th>
+                <th>Day %</th>
                 <th>Weekly %</th>
                 <th>Edit</th>
               </tr>
@@ -64,8 +64,8 @@ function Home() {
                     <td>
                       <Svg.Stack /> <Link to={`/stockpiles/${stockpile.id}`}>{stockpile.title}</Link>
                     </td>
-                    <td>xx</td>
-                    <td>xx</td>
+                    <td>{stockpile.day_change}</td>
+                    <td>{stockpile.week_change}</td>
                     <td>
                       <Link to={`/stockpiles/${stockpile.id}/edit`}>
                         Edit <span className={styles.visually_hidden}>{stockpile.title}</span>

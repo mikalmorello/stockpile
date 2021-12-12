@@ -39,7 +39,7 @@ function Stockpiles() {
               <tr>
                 <th>Name</th>
                 <th>Creator</th>
-                <th>Daily %</th>
+                <th>Day %</th>
                 <th>Weekly %</th>
               </tr>
             </thead>
@@ -53,8 +53,8 @@ function Stockpiles() {
                     <td>
                       <Link to={`/users/${stockpile.creator.id}`}>{stockpile.creator.username}</Link>
                     </td>
-                    <td>xx</td>
-                    <td>xx</td>
+                    <td>{stockpile.day_change}</td>
+                    <td>{stockpile.week_change}</td>
                   </tr>
                 ))
               ) : (
