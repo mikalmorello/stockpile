@@ -23,6 +23,7 @@
   padding: 3rem 6rem 3rem;
   position: relative;
   @include desktop {
+    min-height: 80vh;
     padding: 3rem 4rem 6rem;
   }
   @include desktop-large {
