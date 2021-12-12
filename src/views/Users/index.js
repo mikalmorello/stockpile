@@ -1,18 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import userApi from "../../hooks/userApi";
+import AuthContext from "../../context/AuthContext";
 
 // Styles
 import styles from "./Users.module.scss";
 
 function Users() {
   // State
-  const [users, setUsers] = React.useState();
+  const [users, setUsers] = React.useState(),
+    { authTokens } = React.useContext(AuthContext);
 
   // Get Users
   React.useEffect(() => {
-    userApi.getUsers(setUsers);
-  }, []);
+    userApi.getUsers(setUsers, authTokens);
+  }, [authTokens]);
 
   return (
     <main className={styles.main}>
@@ -26,7 +28,7 @@ function Users() {
       </section>
       <section className={styles.users} aria-label="users">
         <ul className={styles.user_list}>
-          {users ? (
+          {users && users.length ? (
             users.map((user) => (
               <li key={user.id} className={styles.user}>
                 <Link className={styles.user_link} to={`/users/${user.id}`}>
@@ -35,7 +37,7 @@ function Users() {
               </li>
             ))
           ) : (
-            <li> Loading users </li>
+            <li> Loading users... </li>
           )}
         </ul>
       </section>

@@ -3,12 +3,17 @@ const { REACT_APP_STOCKPILE_API_URL } = process.env;
 
 // User API functions
 const userApi = {
-  getUsers: function (setUsers) {
+  getUsers: function (setUsers, authTokens) {
     // API url
     let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/users`;
 
     // Get all users
-    fetch(apiUrl)
+    fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + String(authTokens.access),
+      },
+    })
       .then((response) => response.json())
       .then(function (data) {
         // Set the users data
