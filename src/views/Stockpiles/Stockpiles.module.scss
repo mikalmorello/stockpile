@@ -2,16 +2,22 @@
 @import "../../styles/_colors.scss";
 @import "../../styles/_fonts.scss";
 @import "../../styles/_shadows.scss";
+@import "../../styles/_breakpoints.scss";
 
 .main {
   background: $content-primary;
   box-shadow: $shadow-medium;
   display: flex;
+  flex-direction: column;
   font-family: $sora;
   justify-content: center;
   min-height: 80vh;
-  padding: 6rem;
+  padding: 6rem 2rem;
   position: relative;
+  @include desktop {
+    flex-direction: row;
+    padding: 6rem;
+  }
   &:after {
     content: "";
     position: absolute;
@@ -32,9 +38,12 @@
   flex-grow: 1;
   font-family: $roboto;
   line-height: 1.35em;
-  max-width: 35rem;
-  padding: 0 5rem;
   position: relative;
+  width: 100%;
+  @include desktop {
+    padding: 0 5rem;
+    width: 35rem;
+  }
 }
 
 .intro_text {
@@ -54,10 +63,13 @@
 .header_container {
   display: flex;
   justify-content: flex-end;
-  margin: 8.5rem 0 2rem;
+  margin: 5rem 0 2rem;
   width: 12rem;
   position: relative;
   z-index: 0;
+  @include desktop {
+    margin: 8.5rem 0 2rem;
+  }
 }
 
 .header {
@@ -153,12 +165,19 @@
 .stockpiles {
   background: $content-secondary;
   box-shadow: $shadow-light;
-  margin: 3.5rem 8rem -7.5rem 0;
-  padding: 5rem;
-  width: 50rem;
+  padding: 2rem 1.5rem;
+  @include desktop {
+    margin: 3.5rem 8rem -7.5rem 0;
+    padding: 5rem;
+    width: 50rem;
+  }
 }
 
 // Tables
+
+.table_container {
+  overflow-x: auto;
+}
 
 .table {
   border-collapse: collapse;

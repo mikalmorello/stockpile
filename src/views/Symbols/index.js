@@ -36,7 +36,7 @@ function Symbols() {
               </li>
             ))
           ) : (
-            <li>Symbols loading</li>
+            <li>Symbols loading...</li>
           )}
         </ul>
       </section>

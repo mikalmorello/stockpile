@@ -47,38 +47,40 @@ function Home() {
         <div className={styles.subheader_container}>
           <h2 className={styles.subheader}>Your Stockpiles</h2>
         </div>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Daily %</th>
-              <th>Weekly %</th>
-              <th>Edit</th>
-            </tr>
-          </thead>
-          <tbody>
-            {stockpiles ? (
-              stockpiles.map((stockpile, index) => (
-                <tr key={stockpile.id}>
-                  <td>
-                    <Svg.Stack /> <Link to={`/stockpiles/${stockpile.id}`}>{stockpile.title}</Link>
-                  </td>
-                  <td>xx</td>
-                  <td>xx</td>
-                  <td>
-                    <Link to={`/stockpiles/${stockpile.id}/edit`}>
-                      Edit <span className={styles.visually_hidden}>{stockpile.title}</span>
-                    </Link>
-                  </td>
-                </tr>
-              ))
-            ) : (
+        <div className={styles.table_container}>
+          <table className={styles.table}>
+            <thead>
               <tr>
-                <td colSpan="4">No Stockpiles</td>
+                <th>Name</th>
+                <th>Daily %</th>
+                <th>Weekly %</th>
+                <th>Edit</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {stockpiles ? (
+                stockpiles.map((stockpile, index) => (
+                  <tr key={stockpile.id}>
+                    <td>
+                      <Svg.Stack /> <Link to={`/stockpiles/${stockpile.id}`}>{stockpile.title}</Link>
+                    </td>
+                    <td>xx</td>
+                    <td>xx</td>
+                    <td>
+                      <Link to={`/stockpiles/${stockpile.id}/edit`}>
+                        Edit <span className={styles.visually_hidden}>{stockpile.title}</span>
+                      </Link>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="4">No Stockpiles</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </section>
     </main>
   );

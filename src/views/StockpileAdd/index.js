@@ -53,6 +53,12 @@ function StockpileAdd() {
     dropdownIndicator: (styles) => ({
       ...styles,
       fill: "#191919",
+      color: "#191919",
+    }),
+    clearIndicator: (styles) => ({
+      ...styles,
+      fill: "#191919",
+      color: "#191919",
     }),
     placeholder: (styles) => ({
       ...styles,

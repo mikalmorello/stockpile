@@ -38,36 +38,38 @@ function Stockpiles() {
         </div>
       </section>
       <section className={styles.stockpiles} aria-label="stockpiles">
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Creator</th>
-              <th>Daily %</th>
-              <th>Weekly %</th>
-            </tr>
-          </thead>
-          <tbody>
-            {stockpiles && stockpiles.length ? (
-              stockpiles.map((stockpile, index) => (
-                <tr key={stockpile.id}>
-                  <td>
-                    <Svg.Stack /> <Link to={`/stockpiles/${stockpile.id}`}>{stockpile.title}</Link>
-                  </td>
-                  <td>
-                    <Link to={`/users/${stockpile.creator.id}`}>{stockpile.creator.username}</Link>
-                  </td>
-                  <td>xx</td>
-                  <td>xx</td>
-                </tr>
-              ))
-            ) : (
+        <div className={styles.table_container}>
+          <table className={styles.table}>
+            <thead>
               <tr>
-                <td colSpan="4">No Stockpiles</td>
+                <th>Name</th>
+                <th>Creator</th>
+                <th>Daily %</th>
+                <th>Weekly %</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {stockpiles && stockpiles.length ? (
+                stockpiles.map((stockpile, index) => (
+                  <tr key={stockpile.id}>
+                    <td>
+                      <Svg.Stack /> <Link to={`/stockpiles/${stockpile.id}`}>{stockpile.title}</Link>
+                    </td>
+                    <td>
+                      <Link to={`/users/${stockpile.creator.id}`}>{stockpile.creator.username}</Link>
+                    </td>
+                    <td>xx</td>
+                    <td>xx</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="4">No Stockpiles</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </section>
     </main>
   );

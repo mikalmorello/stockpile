@@ -2,6 +2,7 @@
 @import "../../styles/_colors.scss";
 @import "../../styles/_fonts.scss";
 @import "../../styles/_shadows.scss";
+@import "../../styles/_breakpoints.scss";
 
 .main {
   align-items: center;
@@ -11,8 +12,11 @@
   flex-direction: column;
   font-family: $sora;
   min-height: 80vh;
-  padding: 6rem;
+  padding: 6rem 2rem;
   position: relative;
+  @include desktop {
+    padding: 6rem;
+  }
   &:after {
     border: 2px solid rgba($color: #fff, $alpha: 0.5);
     content: "";
@@ -33,9 +37,13 @@
   font-family: $roboto;
   line-height: 1.35em;
   margin: 5.5rem 0 2rem;
-  padding: 0 5rem;
+  padding: 0 2.5rem;
   position: relative;
-  width: 85rem;
+  width: 100%;
+  @include desktop {
+    padding: 0 5rem;
+    width: 85rem;
+  }
 }
 
 .intro_text {
@@ -45,8 +53,11 @@
 
 .details {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  @include desktop {
+    flex-direction: row;
+    justify-content: center;
+  }
 }
 
 .header_container {
@@ -101,18 +112,26 @@
   box-shadow: $shadow-light;
   margin: 0 0 -7.5rem 0;
   min-height: 30rem;
-  padding: 5rem;
-  width: 85rem;
+  padding: 3rem 1.5rem;
+  width: 100%;
+  @include desktop {
+    padding: 5rem;
+    width: 85rem;
+  }
 }
 
 // Tables
+
+.table_container {
+  overflow-x: auto;
+}
 
 .table {
   border-collapse: collapse;
   width: 100%;
   th {
     border-bottom: 1px solid $border-dark;
-    padding-bottom: 1rem;
+    padding: 1rem;
     text-align: left;
   }
   td {

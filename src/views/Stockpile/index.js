@@ -59,38 +59,40 @@ function Stockpile() {
         <div className={styles.subheader_container}>
           <h2 className={styles.subheader}>Stocks</h2>
         </div>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Stock</th>
-              <th>Current Price</th>
-              <th>Day Change %</th>
-              <th>Day Change Price</th>
-              <th>Week Change %</th>
-              <th>Week Change Price</th>
-              <th>Last Refreshed</th>
-            </tr>
-          </thead>
-          <tbody>
-            {stockpile && stockpile.stocks.length ? (
-              stockpile.stocks.map((stock) => (
-                <tr key={stock.id}>
-                  <td className={styles.symbol}>{stock.symbol}</td>
-                  <td>${stock.daily[0].price}</td>
-                  <td>{stock.day_change.percent}%</td>
-                  <td>${stock.day_change.price}</td>
-                  <td>{stock.week_change.percent}%</td>
-                  <td>${stock.week_change.price}</td>
-                  <td>{formatDate(stock.last_refreshed)}</td>
-                </tr>
-              ))
-            ) : (
+        <div className={styles.table_container}>
+          <table className={styles.table}>
+            <thead>
               <tr>
-                <td colSpan="7">No stocks selected</td>
+                <th>Stock</th>
+                <th>Current Price</th>
+                <th>Day Change %</th>
+                <th>Day Change Price</th>
+                <th>Week Change %</th>
+                <th>Week Change Price</th>
+                <th>Last Refreshed</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {stockpile && stockpile.stocks.length ? (
+                stockpile.stocks.map((stock) => (
+                  <tr key={stock.id}>
+                    <td className={styles.symbol}>{stock.symbol}</td>
+                    <td>${stock.daily[0].price}</td>
+                    <td>{stock.day_change.percent}%</td>
+                    <td>${stock.day_change.price}</td>
+                    <td>{stock.week_change.percent}%</td>
+                    <td>${stock.week_change.price}</td>
+                    <td>{formatDate(stock.last_refreshed)}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="7">No stocks selected</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </section>
     </main>
   );
