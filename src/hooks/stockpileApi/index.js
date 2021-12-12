@@ -66,13 +66,16 @@ const stockpileAPI = {
         console.log(error);
       });
   },
-  deleteStockpile: function (stockpileId) {
+  deleteStockpile: function (stockpileId, authTokens) {
     // API url
     let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/stockpiles/${stockpileId}`;
 
     // Delete a stockpile
     return fetch(apiUrl, {
       method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + String(authTokens.access),
+      },
     }).catch((error) => {
       // Log out the error
       console.log(error);

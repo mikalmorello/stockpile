@@ -12,12 +12,16 @@ import Svg from "../../svg/Svg.js";
 import styles from "./Stockpile.module.scss";
 
 function Stockpile() {
+  // Get active user
+  let { user } = React.useContext(AuthContext);
+
   // Get URL params
   let params = useParams(),
     stockpileId = params.stockpileId;
 
   // Set state
   const [stockpile, setStockpile] = React.useState(),
+    [userOwned, setUserOwned] = React.useState(false),
     { authTokens } = React.useContext(AuthContext);
 
   // Get stockpile
@@ -32,6 +36,15 @@ function Stockpile() {
     console.log(dateMDY);
     return dateMDY;
   }
+
+  // Check stockpile owner
+  React.useEffect(() => {
+    // Check if stockpile was created by user
+    if (user && stockpile && user.username === stockpile.creator.username) {
+      // Set state to user owned
+      setUserOwned(true);
+    }
+  }, [user, stockpile]);
 
   return (
     <main className={styles.main} id={stockpile ? stockpile.id : ""}>
@@ -49,9 +62,13 @@ function Stockpile() {
             </div>
           </div>
           <div className={styles.edit}>
-            <Link to={`/stockpiles/${stockpileId}/edit`}>
-              Edit <Svg.Edit />
-            </Link>
+            {userOwned ? (
+              <Link to={`/stockpiles/${stockpileId}/edit`}>
+                Edit <Svg.Edit />
+              </Link>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </section>

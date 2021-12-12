@@ -17,11 +17,12 @@ function StockpileEdit() {
 
   // Set state
   const [stockpile, setStockpile] = React.useState(),
-    [userOwned, setUserOwned] = React.useState(false);
+    [userOwned, setUserOwned] = React.useState(false),
+    { authTokens } = React.useContext(AuthContext);
 
   // Get stockpile
   React.useEffect(() => {
-    stockpileApi.getStockpile(stockpileId, setStockpile);
+    stockpileApi.getStockpile(stockpileId, setStockpile, authTokens);
   }, [stockpileId]);
 
   // Define redirect function
@@ -30,7 +31,7 @@ function StockpileEdit() {
   // Delete stockpile
   const deleteStockpile = function () {
     stockpileApi
-      .deleteStockpile(stockpileId)
+      .deleteStockpile(stockpileId, authTokens)
       .then(() => {
         // Redirect to the stockpiles page
         navigate("/stockpiles");
