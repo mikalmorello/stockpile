@@ -21,6 +21,25 @@ const stockpileAPI = {
         setStockpiles(data);
       });
   },
+  getUserStockpiles: function (setStockpiles, authTokens) {
+    // Get all the stockpiles
+    console.log("test stockpiles api");
+    let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/stockpiles/user`;
+
+    fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + String(authTokens.access),
+      },
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        console.log(data);
+        setStockpiles(data);
+      });
+  },
   getStockpile: function (stockpileId, setStockpile) {
     let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/stockpiles/${stockpileId}`;
 

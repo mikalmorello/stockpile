@@ -20,7 +20,7 @@ function Home() {
 
   // Get all stockpiles
   React.useEffect(() => {
-    StockpileApi.getStockpiles(setStockpiles, authTokens);
+    StockpileApi.getUserStockpiles(setStockpiles, authTokens);
   }, [location.key, authTokens]);
 
   return (
@@ -58,7 +58,7 @@ function Home() {
               </tr>
             </thead>
             <tbody>
-              {stockpiles ? (
+              {stockpiles && stockpiles.length ? (
                 stockpiles.map((stockpile, index) => (
                   <tr key={stockpile.id}>
                     <td>
@@ -75,7 +75,7 @@ function Home() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="4">No Stockpiles</td>
+                  <td colSpan="4">No stockpiles created yet.</td>
                 </tr>
               )}
             </tbody>
