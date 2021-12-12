@@ -1,12 +1,15 @@
-import { useContext } from "react";
+import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 
+// Handle private routes
 const PrivateRoute = ({ children, ...rest }) => {
-  let { user } = useContext(AuthContext);
+  // Set state
+  let { user } = React.useContext(AuthContext);
 
-  // If not authenticated
+  // If user is not authenticated
   if (!user) {
+    // Redirect to login page
     return <Navigate to="/login"></Navigate>;
   }
   // Else follow to correct path

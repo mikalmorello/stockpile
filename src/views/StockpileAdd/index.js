@@ -3,6 +3,8 @@ import React from "react";
 import WindowedSelect from "react-windowed-select";
 import symbolApi from "../../hooks/symbolApi";
 import { createFilter } from "react-windowed-select";
+import AuthContext from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 // Styles
 import styles from "./StockpileAdd.module.scss";
@@ -17,7 +19,9 @@ function StockpileAdd() {
     [symbols, setSymbols] = React.useState([]),
     [options, setOptions] = React.useState([]),
     customFilter = createFilter({ ignoreAccents: false }),
-    selectLimit = 5;
+    selectLimit = 5,
+    { authTokens } = React.useContext(AuthContext),
+    navigate = useNavigate();
 
   // Handle select
   const onchangeSelect = (options) => {
@@ -73,14 +77,27 @@ function StockpileAdd() {
     // Prevent default form submission
     e.preventDefault();
 
-    // Connect to API
+    // Create API
     return fetch(`${REACT_APP_STOCKPILE_API_URL}/api/stockpiles/create`, {
       method: "POST",
+      headers: {
+        Authorization: "Bearer " + String(authTokens.access),
+      },
       body: JSON.stringify({
         title: title,
         stocks: selectedOptions,
       }),
-    });
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // Redirect to the home page
+        navigate("/");
+      })
+      .catch((error) => {
+        // Log error to console
+        console.log(error);
+      });
   };
 
   return (
@@ -114,6 +131,7 @@ function StockpileAdd() {
               isMulti
               id="symbols"
               styles={customStyles}
+              required
               //
             />
           </div>

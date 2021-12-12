@@ -11,7 +11,7 @@ import Svg from "../../svg/Svg.js";
 import styles from "./Home.module.scss";
 
 function Home() {
-  // State
+  // Set State
   const [stockpiles, setStockpiles] = React.useState(),
     { authTokens, user } = React.useContext(AuthContext);
 
@@ -20,7 +20,7 @@ function Home() {
 
   // Get all stockpiles
   React.useEffect(() => {
-    StockpileApi.getStockpiles(setStockpiles, authTokens);
+    StockpileApi.getUserStockpiles(setStockpiles, authTokens);
   }, [location.key, authTokens]);
 
   return (
@@ -32,7 +32,7 @@ function Home() {
         <div>
           <p className={styles.intro_text}>
             Welcome,
-            <Link className={styles.user} to={`/users/${user.id}`}>
+            <Link className={styles.user} to={`/profile`}>
               {user.username}
             </Link>
             .
@@ -52,20 +52,20 @@ function Home() {
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Daily %</th>
+                <th>Day %</th>
                 <th>Weekly %</th>
                 <th>Edit</th>
               </tr>
             </thead>
             <tbody>
-              {stockpiles ? (
+              {stockpiles && stockpiles.length ? (
                 stockpiles.map((stockpile, index) => (
                   <tr key={stockpile.id}>
                     <td>
                       <Svg.Stack /> <Link to={`/stockpiles/${stockpile.id}`}>{stockpile.title}</Link>
                     </td>
-                    <td>xx</td>
-                    <td>xx</td>
+                    <td>{stockpile.day_change}</td>
+                    <td>{stockpile.week_change}</td>
                     <td>
                       <Link to={`/stockpiles/${stockpile.id}/edit`}>
                         Edit <span className={styles.visually_hidden}>{stockpile.title}</span>
@@ -75,7 +75,7 @@ function Home() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="4">No Stockpiles</td>
+                  <td colSpan="4">No stockpiles created yet.</td>
                 </tr>
               )}
             </tbody>

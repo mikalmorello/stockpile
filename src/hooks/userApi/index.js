@@ -1,57 +1,100 @@
 // Environment variables
 const { REACT_APP_STOCKPILE_API_URL } = process.env;
 
+// User API functions
 const userApi = {
-  getUsers: function (setUsers) {
-    // Get all users
+  getUsers: function (setUsers, authTokens) {
+    // API url
     let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/users`;
 
-    fetch(apiUrl)
-      .then(function (promise) {
-        return promise.json();
-      })
+    // Get all users
+    fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + String(authTokens.access),
+      },
+    })
+      .then((response) => response.json())
       .then(function (data) {
-        console.log(data);
+        // Set the users data
         setUsers(data);
+      })
+      .catch((error) => {
+        // Log out the error
+        console.log(error);
       });
   },
-  getUser: function (userId, setUser) {
-    // Get user
+  getUser: function (userId, setUser, authTokens) {
+    // API url
     let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/users/${userId}`;
 
-    fetch(apiUrl)
-      .then(function (promise) {
-        return promise.json();
-      })
+    // Get user
+    fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + String(authTokens.access),
+      },
+    })
+      .then((response) => response.json())
       .then(function (data) {
-        console.log(data);
+        // Set the user data
         setUser(data);
+      })
+      .catch((error) => {
+        // Log out the error
+        console.log(error);
       });
   },
-  getToken: function (submission) {
-    console.log("get token");
+  registerUser: function (submission) {
+    console.log("REGISTRATION");
     console.log(submission);
+    // API url
+    let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/register`;
 
     // Create FormData object
     let formData = new FormData();
+
+    // Add submission data
     formData.append("username", submission.username);
-
-    console.log(submission.username);
+    formData.append("email", submission.email);
     formData.append("password", submission.password);
+    formData.append("confirmation", submission.confirmation);
 
-    // Get Auth Token
-    let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/token`;
-
+    // Get user
     fetch(apiUrl, {
       method: "POST",
       body: formData,
     })
-      .then(function (promise) {
-        return promise.json();
-      })
+      .then((response) => response.json())
+      .catch((error) => {
+        // Log out the error
+        console.log(error);
+      });
+  },
+  getToken: function (submission) {
+    // API url
+    let apiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/token`;
+
+    // Create FormData object
+    let formData = new FormData();
+
+    // Add username and password to FormData
+    formData.append("username", submission.username);
+    formData.append("password", submission.password);
+
+    // Get Auth Token
+    fetch(apiUrl, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
       .then((data) => {
-        // Log out the token
         console.log(data);
+        return true;
+      })
+      .catch((error) => {
+        // Log out the error
+        console.log(error);
       });
   },
 };

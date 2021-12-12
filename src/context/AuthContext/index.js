@@ -1,21 +1,23 @@
-import { createContext, useState, useEffect } from "react";
+// Dependencies
+import React from "react";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
-const AuthContext = createContext();
+// Create auth context
+const AuthContext = React.createContext();
 
-export default AuthContext;
+// Environment variables
+const { REACT_APP_STOCKPILE_API_URL } = process.env;
 
+// Setup auth provider
 export const AuthProvider = ({ children }) => {
-  // Define redirect function
-  const navigate = useNavigate();
+  // Set local state
+  const [authTokens, setAuthTokens] = React.useState(() => (localStorage.getItem("authTokens") ? JSON.parse(localStorage.getItem("authTokens")) : null)),
+    [user, setUser] = React.useState(() => (localStorage.getItem("authTokens") ? jwt_decode(localStorage.getItem("authTokens")) : null)),
+    [loading, setLoading] = React.useState(true),
+    navigate = useNavigate();
 
-  // Check if tokens are in local storage
-
-  let [authTokens, setAuthTokens] = useState(() => (localStorage.getItem("authTokens") ? JSON.parse(localStorage.getItem("authTokens")) : null)),
-    [user, setUser] = useState(() => (localStorage.getItem("authTokens") ? jwt_decode(localStorage.getItem("authTokens")) : null)),
-    [loading, setLoading] = useState(true);
-
+  // Login User
   let loginUser = async (e) => {
     e.preventDefault();
     let response = await fetch(`http://127.0.0.1:8000/api/token/`, {
@@ -39,36 +41,44 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // REFRESH TOKEN
+  // Refresh token
   let updateToken = async () => {
-    let response = await fetch(`http://127.0.0.1:8000/api/token/refresh/`, {
+    // API token endpoint
+    let ApiUrl = `${REACT_APP_STOCKPILE_API_URL}/api/token/refresh/`;
+
+    // Get API token
+    fetch(ApiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ refresh: authTokens?.refresh }),
-    });
-    let data = await response.json();
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Set auth token
+        setAuthTokens(data);
+        // Decode user data from JWT token
+        setUser(jwt_decode(data.access));
+        // Set authorization token in local storage
+        localStorage.setItem("authTokens", JSON.stringify(data));
+      })
+      .catch((error) => {
+        console.log(error);
+        logoutUser();
+      });
 
-    if (response.status === 200) {
-      setAuthTokens(data);
-      // Decode user data from JWT token
-      setUser(jwt_decode(data.access));
-      // Set authorization token in local storage
-      localStorage.setItem("authTokens", JSON.stringify(data));
-    } else {
-      logoutUser();
-    }
-
+    // Set loading status to false
     if (loading) {
       setLoading(false);
     }
   };
 
-  // LOGOUT
+  // Logout
   let logoutUser = () => {
-    // Set user and auth to null
+    // Remove auth token
     setAuthTokens(null);
+    // Remove user
     setUser(null);
     // Clear local storage auth tokens
     localStorage.removeItem("authTokens");
@@ -76,6 +86,7 @@ export const AuthProvider = ({ children }) => {
     navigate("/login");
   };
 
+  // Set context data
   let contextData = {
     user: user,
     authTokens: authTokens,
@@ -84,18 +95,28 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Call refresh tokens on regular interval
-  useEffect(() => {
+  React.useEffect(() => {
+    // If page is loading update token
     if (loading) {
       updateToken();
     }
+
+    // Set refresh interval
     let refreshInterval = 1000 * 60 * 25;
+
+    // Update tokens on regular interval
     let interval = setInterval(() => {
       if (authTokens) {
         updateToken();
       }
     }, refreshInterval);
+
+    // Clear interval
     return () => clearInterval(interval);
   }, [authTokens, loading]);
 
+  // Return auth provider
   return <AuthContext.Provider value={contextData}>{children}</AuthContext.Provider>;
 };
+
+export default AuthContext;

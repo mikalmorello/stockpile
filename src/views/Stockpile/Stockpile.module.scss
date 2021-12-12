@@ -4,6 +4,7 @@
 @import "../../styles/_shadows.scss";
 @import "../../styles/_breakpoints.scss";
 
+// Main
 .main {
   align-items: center;
   background: $content-primary;
@@ -30,7 +31,6 @@
 }
 
 // Intro Section
-
 .intro {
   display: flex;
   flex-direction: column;
@@ -106,7 +106,6 @@
 }
 
 // Stockpiles Section
-
 .stockpile {
   background: $content-secondary;
   box-shadow: $shadow-light;
@@ -121,7 +120,6 @@
 }
 
 // Tables
-
 .table_container {
   overflow-x: auto;
 }

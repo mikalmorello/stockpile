@@ -1,0 +1,55 @@
+// Imports
+@import "../../styles/_colors.scss";
+@import "../../styles/_fonts.scss";
+@import "../../styles/_shadows.scss";
+@import "../../styles/_breakpoints.scss";
+
+.main {
+  background: $content-primary;
+  box-shadow: $shadow-medium;
+  display: flex;
+  flex-direction: column;
+  font-family: $sora;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 6rem 2rem;
+  position: relative;
+  @include desktop {
+    flex-direction: row;
+    padding: 6rem;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    width: calc(100% - 2.5rem);
+    height: 100%;
+    border: 2px solid rgba($color: #fff, $alpha: 0.5);
+    left: -0.25rem;
+    top: 2.5rem;
+    z-index: -1;
+  }
+}
+
+// Intro Section
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  font-family: $roboto;
+  line-height: 1.35em;
+  position: relative;
+  width: 100%;
+  @include desktop {
+    padding: 0 5rem;
+    width: 35rem;
+  }
+}
+
+.header {
+  font-size: 2rem;
+  line-height: 1.35em;
+  margin: 0 0 2.25rem 0;
+  max-width: 25rem;
+  padding-top: 4rem;
+}

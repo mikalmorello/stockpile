@@ -14,9 +14,6 @@ function Stockpiles() {
   const [stockpiles, setStockpiles] = React.useState(),
     { authTokens } = React.useContext(AuthContext);
 
-  console.log("get auth");
-  console.log(authTokens);
-
   // Get location to refresh page (hack)
   const location = useLocation();
 
@@ -24,8 +21,6 @@ function Stockpiles() {
   React.useEffect(() => {
     StockpileApi.getStockpiles(setStockpiles, authTokens);
   }, [location.key, authTokens]);
-
-  // If the stockpiles data is available
 
   return (
     <main className={styles.main}>
@@ -44,7 +39,7 @@ function Stockpiles() {
               <tr>
                 <th>Name</th>
                 <th>Creator</th>
-                <th>Daily %</th>
+                <th>Day %</th>
                 <th>Weekly %</th>
               </tr>
             </thead>
@@ -58,8 +53,8 @@ function Stockpiles() {
                     <td>
                       <Link to={`/users/${stockpile.creator.id}`}>{stockpile.creator.username}</Link>
                     </td>
-                    <td>xx</td>
-                    <td>xx</td>
+                    <td>{stockpile.day_change}</td>
+                    <td>{stockpile.week_change}</td>
                   </tr>
                 ))
               ) : (

@@ -9,6 +9,7 @@ function Header() {
   let { user, logoutUser } = useContext(AuthContext),
     location = useLocation();
 
+  // If the user is logged in and it is not the login view
   if (user && !(location.pathname === "/login")) {
     return (
       <header className={styles.header}>

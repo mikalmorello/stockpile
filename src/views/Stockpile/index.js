@@ -3,6 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import stockpileApi from "../../hooks/stockpileApi";
 import { Link } from "react-router-dom";
+import AuthContext from "../../context/AuthContext";
 
 // SVG
 import Svg from "../../svg/Svg.js";
@@ -11,17 +12,22 @@ import Svg from "../../svg/Svg.js";
 import styles from "./Stockpile.module.scss";
 
 function Stockpile() {
+  // Get active user
+  let { user } = React.useContext(AuthContext);
+
   // Get URL params
   let params = useParams(),
     stockpileId = params.stockpileId;
 
   // Set state
-  const [stockpile, setStockpile] = React.useState();
+  const [stockpile, setStockpile] = React.useState(),
+    [userOwned, setUserOwned] = React.useState(false),
+    { authTokens } = React.useContext(AuthContext);
 
   // Get stockpile
   React.useEffect(() => {
-    stockpileApi.getStockpile(stockpileId, setStockpile);
-  }, [stockpileId]);
+    stockpileApi.getStockpile(stockpileId, setStockpile, authTokens);
+  }, [stockpileId, authTokens]);
 
   // Format date
   function formatDate(newDate) {
@@ -31,7 +37,14 @@ function Stockpile() {
     return dateMDY;
   }
 
-  // If stockpile data is loaded display view
+  // Check stockpile owner
+  React.useEffect(() => {
+    // Check if stockpile was created by user
+    if (user && stockpile && user.username === stockpile.creator.username) {
+      // Set state to user owned
+      setUserOwned(true);
+    }
+  }, [user, stockpile]);
 
   return (
     <main className={styles.main} id={stockpile ? stockpile.id : ""}>
@@ -49,9 +62,13 @@ function Stockpile() {
             </div>
           </div>
           <div className={styles.edit}>
-            <Link to={`/stockpiles/${stockpileId}/edit`}>
-              Edit <Svg.Edit />
-            </Link>
+            {userOwned ? (
+              <Link to={`/stockpiles/${stockpileId}/edit`}>
+                Edit <Svg.Edit />
+              </Link>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </section>
